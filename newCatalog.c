@@ -7,7 +7,7 @@
 #include "libraries.h"
 #include "catalogs.h"
 
-#define NAME_LEN 20
+
 
 void NewCatalog()
 {
@@ -55,7 +55,6 @@ void NewCatalog()
         }
         else
         {
-            namesFile = NULL;
 
             if(nameCount == 0)
             {

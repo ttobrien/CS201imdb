@@ -8,8 +8,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-Movie* insert(Movie *, char *, char *, char *, int, int);
-Movie* delete(Movie *, char *);
+Movie* Insert(Movie *, char *, char *, char *, int, int);
+Movie* Remove(Movie *, char *);
 void preorder(Movie *);
 void inorder(Movie *);
 Movie* rotateRight(Movie *);

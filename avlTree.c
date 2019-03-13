@@ -19,7 +19,7 @@ typedef struct Movie
     int height;
 } Movie;
 
-Movie* insert(Movie *avl, char *nameKey, char *nameReg, char *types, int yearStart, int minutes);
+Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, int yearStart, int minutes);
 {
     if(avl == NULL)
     {

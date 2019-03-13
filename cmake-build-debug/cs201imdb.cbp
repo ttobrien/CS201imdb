@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="cs201imdb"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cs201imdb">
+				<Option output="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/cs201imdb.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 cs201imdb"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="cs201imdb/fast">
+				<Option output="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/cs201imdb.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/include"/>
+					<Add directory="/usr/include"/>
+					<Add directory="/usr/lib/gcc/x86_64-pc-cygwin/7.4.0/../../../../lib/../include/w32api"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 cs201imdb/fast"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make.exe -j8 -f &quot;/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/avlTree.c">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/avlTree.h">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/catalogs.c">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/catalogs.h">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/display.c">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/display.h">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/libraries.h">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/main.c">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/newCatalog.c">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/newCatalog.h">
+			<Option target="cs201imdb"/>
+		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

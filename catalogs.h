@@ -8,6 +8,7 @@
 void EditCatalog();
 char *SelectCatalog();
 int CatalogExists();
+char *ConvertToKey(char *);
 
 
 

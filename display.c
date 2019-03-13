@@ -4,6 +4,7 @@
 
 #include "display.h"
 #include "libraries.h"
+#include "avlTree.h"
 
 void StartUp()
 {
@@ -71,7 +72,23 @@ void UseCatalogMenu(char* name)
     switch(choice)
     {
         case 1:
-            
+            Insert(name);
+            break;
+        case 2:
+            Remove(name);
+            break;
+        case 3:
+            Update(name);
+            break;
+        case 4:
+            PrintMovie(name);
+            break;
+        case 5:
+            PrintAll();
+            break;
+        case 6:
+            MainMenu();
+            break;
     }
-
+    return;
 }

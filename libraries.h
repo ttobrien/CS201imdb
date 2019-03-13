@@ -10,6 +10,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <ctype.h>
 
+#define NAME_LEN 20
 
 #endif //CS201IMDB_LIBRARIES_H
