@@ -92,3 +92,26 @@ void UseCatalogMenu(char* name)
     }
     return;
 }
+
+Movie ShowOptions( head)//should get passed in linked list
+{
+    if(head == NULL)
+    {
+        printf("No movies found containing the entered string.");
+        printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
+
+        //recall the previous function
+    }
+    else
+    {
+        //copy pointer to perform count
+        //copy pointer to print names
+        //print titles with a number before each one
+        //allow user
+        //check input with my function
+        //convert to key
+        //return movie struct
+    }
+}
+
+

@@ -11,5 +11,6 @@ void StartUp();
 int MainMenu();
 bool CheckValidInput(int, int, int);
 void UseCatalogMenu();
+Movie ShowOptions();
 
 #endif //CS201IMDB_DISPLAY_H

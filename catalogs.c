@@ -33,8 +33,11 @@ int CatalogExists(char *name)
 char* ConvertToKey(char* title)
 {
     int len = strlen(title);
-    char temp[len];
-    char key;
+    char* temp;
+    char* key;
+    temp = (char *)malloc(len*sizeof(char));
+    key = (char *)malloc((len+1)*sizeof(char));
+
 
     for(int i = 0; i < len; i++)
     {
@@ -43,7 +46,6 @@ char* ConvertToKey(char* title)
 
     if(strncmp(temp, "the ", 4) == 0)
     {
-        key = (char *)malloc((len+1) * sizeof(char));
 
         for(int i = 4; i < len; i++)
         {
@@ -53,6 +55,30 @@ char* ConvertToKey(char* title)
         strcat(key, ", the");
     }
 
+    else if(strncmp(temp, "a ", 2) == 0)
+    {
+        for(int i = 2; i < len; i++)
+        {
+            key[i-2] = temp[i];
+        }
+
+        strcat(key, ", a");
+    }
+
+    else if(strncmp(temp, "le ", 3) == 0)
+    {
+        for(int i = 3; i < len; i++)
+        {
+            key[i-3] = temp[i];
+        }
+
+        strcat(key, ", le");
+    }
+
+    else
+        return temp;
+
 
     return key;
 }
+
