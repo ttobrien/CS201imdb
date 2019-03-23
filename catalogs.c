@@ -88,13 +88,12 @@ Movie* LoadCatalog(char* name)
         return NULL;
     }
 
-    fscanf(catalogName, "%d\n", movieCount);
+    fscanf(catalogName, "%d\n", &movieCount);
 
-    //uncomment this out after writing the function to add to files
-    //if(movieCount == 0)
-    //    return NULL;
+    if(movieCount == 0)
+        return NULL;
 
-    char  key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
+    char key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
 
 
     Movie *catalogTree = NULL;
@@ -116,7 +115,6 @@ Movie* SelectMovie(Movie *database)
     char* title;
     titleKey = (char *)malloc(TITLE_SPACE * sizeof(char));
     title = (char *)malloc(TITLE_SPACE * sizeof(char));
-    Movie movieToUse;
 
     printf("Enter name of movie that you would like to add to your catalog: ");
     fgets(title, TITLE_SPACE, stdin);

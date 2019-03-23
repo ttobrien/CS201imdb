@@ -91,11 +91,20 @@ void NewCatalog(Movie *database)
     FILE* newfile = NULL;
     newfile = fopen(name, "w");
     fprintf(newfile, "0\n");
+
+    Movie* firstMovie = NULL;
+
+    while(firstMovie == NULL)
+        firstMovie = InsertToCatalog(database, firstMovie);
+    PrintNodeToFile(firstMovie, newfile);
+
     fclose(newfile);
 
 
     int nextStep;
     bool loop = false;
+
+
 
     printf("\nFirst movie successfully added to your new catalog.\n\nWould you like to:\n(1) Continue with current catalog\n(2) Return to main menu\n");
     while(! loop)
@@ -105,7 +114,7 @@ void NewCatalog(Movie *database)
         loop = CheckValidInput(1, 2, nextStep);
     }
     if(nextStep == 1)
-        UseCatalogMenu(database, EditCatalog(name));
+        UseCatalogMenu(database, name);
     else
         //MainMenu
     return;

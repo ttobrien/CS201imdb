@@ -108,7 +108,7 @@ void UseCatalogMenu(Movie* database, char* name)
         PrintNodeToFile(catalogTree, writeFile);
     }
 
-
+    fclose(writeFile);
 
     return;
 }
