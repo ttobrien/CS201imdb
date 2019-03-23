@@ -5,12 +5,13 @@
 #ifndef CS201IMDB_DISPLAY_H
 #define CS201IMDB_DISPLAY_H
 
-#include <stdbool.h>
+#include "libraries.h"
+#include "avlTree.h"
 
-void StartUp();
+Movie* StartUp();
 int MainMenu();
 bool CheckValidInput(int, int, int);
-void UseCatalogMenu();
-Movie ShowOptions();
+void UseCatalogMenu(Movie*, char*);
+//Movie ShowOptions();
 
 #endif //CS201IMDB_DISPLAY_H

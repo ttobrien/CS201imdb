@@ -2,11 +2,12 @@
 #include "display.h"
 #include "newCatalog.h"
 #include "catalogs.h"
+#include "avlTree.h"
 
 
 int main(void)
 {
-    StartUp();
+    Movie *tree = StartUp();
 
     while(1)
     {
@@ -15,10 +16,10 @@ int main(void)
         switch (choice)
         {
             case 1 :
-                NewCatalog();
+                NewCatalog(tree);
                 break;
             case 2 :
-                EditCatalog();
+                UseCatalogMenu(tree, EditCatalog());
                 break;
             case 3 :
                 return 0;

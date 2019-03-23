@@ -5,20 +5,21 @@
 #include "display.h"
 #include "libraries.h"
 #include "avlTree.h"
+#include "catalogs.h"
 
-void StartUp()
+Movie* StartUp()
 {
     printf("\n\nWelcome to the IMDb Movie Catalog!\n\n");
     printf("Initializing database. Please wait.\n");
+    Movie *tree = LoadDatabase();
     printf("Intitialization finished.\n\n");
 
-    return;
+    return tree;
 }
 
 
 int MainMenu()
 {
-    int retVal = 0;
     bool loop = false;
     int choice;
 
@@ -51,67 +52,64 @@ bool CheckValidInput(int lower, int upper, int num)
     return liang;
 }
 
-void UseCatalogMenu(char* name)
+void UseCatalogMenu(Movie* database, char* name)
 {
     int choice;
     bool loop = false;
+    bool editing = true;
+    Movie *catalogTree = LoadCatalog(name);
 
-    while(!loop) {
-        printf("\nSelect what you would like to do with catalog %s:\n");
-        printf("(1) Add/Create a movie\n");
-        printf("(2) Remove a movie\n");
-        printf("(3) Update a movie\n");
-        printf("(4) View a movie\n");
-        printf("(5) View all titles\n");
-        printf("(6) Return to main menu\n");
-        printf("Enter number of choice: ");
-        scanf("%d", &choice);
-        loop = CheckValidInput(1, 6, choice);
+    while(editing) {
+        while (!loop) {
+            printf("\nSelect what you would like to do with catalog %s:\n", name);
+            printf("(1) Add/Create a movie\n");
+            printf("(2) Remove a movie\n");
+            printf("(3) Update a movie\n");
+            printf("(4) View a movie\n");
+            printf("(5) View all titles\n");
+            printf("(6) Return to main menu\n");
+            printf("Enter number of choice: ");
+            scanf("%d", &choice);
+            loop = CheckValidInput(1, 6, choice);
+        }
+
+        switch (choice) {
+            case 1:
+                catalogTree = InsertToCatalog(database, catalogTree);
+                break;
+            case 2:
+                //Remove(name);
+                break;
+            case 3:
+                //Update(name);
+                break;
+            case 4:
+                //PrintMovie(name);
+                break;
+            case 5:
+                PrintAll(catalogTree);
+                break;
+            case 6:
+                editing = false;
+                break;
+        }
     }
 
-    switch(choice)
-    {
-        case 1:
-            Insert(name);
-            break;
-        case 2:
-            Remove(name);
-            break;
-        case 3:
-            Update(name);
-            break;
-        case 4:
-            PrintMovie(name);
-            break;
-        case 5:
-            PrintAll();
-            break;
-        case 6:
-            MainMenu();
-            break;
-    }
-    return;
-}
+    FILE* writeFile = NULL;
+    writeFile = fopen(name, "w");
 
-Movie ShowOptions( head)//should get passed in linked list
-{
-    if(head == NULL)
+    if(catalogTree == NULL)
     {
-        printf("No movies found containing the entered string.");
-        printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
-
-        //recall the previous function
+        fprintf(writeFile, "0\n");
     }
     else
     {
-        //copy pointer to perform count
-        //copy pointer to print names
-        //print titles with a number before each one
-        //allow user
-        //check input with my function
-        //convert to key
-        //return movie struct
+        fprintf(writeFile, "1\n");
+        PrintNodeToFile(catalogTree, writeFile);
     }
-}
 
+
+
+    return;
+}
 

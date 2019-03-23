@@ -5,6 +5,8 @@
 #ifndef CS201IMDB_NEWCATALOG_H
 #define CS201IMDB_NEWCATALOG_H
 
-void NewCatalog();
+#include "avlTree.h"
+
+void NewCatalog(Movie *);
 
 #endif //CS201IMDB_NEWCATALOG_H

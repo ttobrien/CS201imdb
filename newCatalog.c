@@ -9,7 +9,7 @@
 
 
 
-void NewCatalog()
+void NewCatalog(Movie *database)
 {
     char name[NAME_LEN];
     bool exists = true;
@@ -58,7 +58,6 @@ void NewCatalog()
 
             if(nameCount == 0)
             {
-                printf("line 59");
                 namesFile = fopen("CatalogNames", "w");
                 fprintf(namesFile, "%s\n", name);
                 fclose(namesFile);
@@ -91,7 +90,7 @@ void NewCatalog()
     //make select movie function, returns struct of movie data
     FILE* newfile = NULL;
     newfile = fopen(name, "w");
-    fprintf(newfile, "TEST");
+    fprintf(newfile, "0\n");
     fclose(newfile);
 
 
@@ -106,8 +105,10 @@ void NewCatalog()
         loop = CheckValidInput(1, 2, nextStep);
     }
     if(nextStep == 1)
-        UseCatalogMenu();
-
+        UseCatalogMenu(database, EditCatalog(name));
+    else
+        //MainMenu
+    return;
 }
 
 

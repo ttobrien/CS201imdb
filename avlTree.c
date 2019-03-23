@@ -3,40 +3,68 @@
 //
 
 #include "avlTree.h"
+#include "catalogs.h"
 
-#define TITLE_SPACE 50
-#define GENRE_SPACE 50
-
-typedef struct Movie
+Movie* LoadDatabase()
 {
-    char key[TITLE_SPACE];
-    char title[TITLE_SPACE];
-    char genre[GENRE_SPACE];
-    int year;
-    int time;
-    Movie *left;
-    Movie *right;
-    int height;
-} Movie;
+    FILE *titleBasics = NULL;
+    titleBasics = fopen("title.basics.tsv", "r");
 
-Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, int yearStart, int minutes);
+    if(titleBasics == NULL)
+    {
+        printf("\ntitle.basics.tsv was not found\n\n");
+        return NULL;
+    }
+
+    char tconst[15], titleType[15], primaryTitle[450], originalTitle[450], genres[GENRE_SPACE];
+    char isAdult[3], startYear[NUM_SPACE], endYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
+    char headers[20], trash;
+
+    for(int i = 1; i <= 8; i++)
+    {
+        fscanf(titleBasics, "%s\t", headers);
+    }
+    fscanf(titleBasics, "%s", headers);
+
+    Movie *tree = NULL;
+
+    while(!feof(titleBasics))
+    {
+        fscanf(titleBasics, "%c", &trash);
+        fscanf(titleBasics, " %s %[^\t] %[^\t] %[^\t] %s %s %s %s %[^\n]", tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres);
+
+        if(strcmp(titleType,"movie") == 0)
+        {
+            tree = Insert(tree, ConvertToKey(primaryTitle), primaryTitle, genres, startYear, runtimeMinutes);
+        }
+    }
+    fclose(titleBasics);
+
+    return tree;
+}
+
+Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearStart, char *minutes)
 {
+
     if(avl == NULL)
     {
         avl = (Movie *)malloc(sizeof(Movie));
         strcpy(avl->key, nameKey);
         strcpy(avl->title, nameReg);
         strcpy(avl->genre, types);
-        avl->year = yearStart;
-        avl->time = minutes;
+        strcpy(avl->year, yearStart);
+        strcpy(avl->time, minutes);
         avl->left = NULL;
         avl->right = NULL;
     }
+
     else
     {
-        if(strcmp(nameKey, avl->key) > 0)
+        if(strcmp(nameKey, avl->key) == 0)
+            return avl;
+        else if(strcmp(nameKey, avl->key) > 0)
         {
-            avl->right = insert(avl->right, nameKey, nameReg, types, yearStart, minutes);
+            avl->right = Insert(avl->right, nameKey, nameReg, types, yearStart, minutes);
             if(BF(avl) == -2)
             {
                 if(strcmp(nameKey, avl->right->key) > 0)
@@ -47,7 +75,7 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, int yearSta
         }
         else
         {
-            avl->left = insert(avl->left, nameKey, nameReg, types, yearStart, minutes);
+            avl->left = Insert(avl->left, nameKey, nameReg, types, yearStart, minutes);
             if(BF(avl) == 2)
             {
                 if(strcmp(nameKey, avl->left->key) < 0)
@@ -60,6 +88,112 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, int yearSta
     avl->height = height(avl);
     return avl;
 }
+
+void PrintInOrder(Movie *tree)
+{
+    if(tree == NULL)
+        return;
+    PrintInOrder(tree->left);
+    printf("%s\n", tree->key);
+    PrintInOrder(tree->right);
+}
+
+void PrintPreOrder(Movie* tree)
+{
+    if(tree == NULL)
+        return;
+    printf("%s\n", tree->key);
+    PrintPreOrder(tree->left);
+    PrintPreOrder(tree->right);
+}
+
+
+/*void LoadDatabase()
+{
+    FILE *titleBasics = NULL;
+    titleBasics = fopen("title.basics.tsv", "r");
+
+    if(titleBasics == NULL)//return NULL
+    {
+        printf("\ntitle.basics.tsv was not found\n\n");
+        return;
+    }
+
+    char tconst[15], titleType[15], primaryTitle[50], originalTitle[50], genres[50];
+    char isAdult[3], startYear[6], endYear[6], runtimeMinutes[6];
+    char headers[20], trash;
+
+    for(int i = 1; i <= 8; i++)
+    {
+        fscanf(titleBasics, "%s\t", headers);
+    }
+    fscanf(titleBasics, "%s", headers);
+
+    Movie *tree = NULL;
+
+    while(!feof(titleBasics))
+    {
+        fscanf(titleBasics, "%c", &trash);
+        fscanf(titleBasics, " %s %[^\t] %[^\t] %[^\t] %s %s %s %s %[^\n]", tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres);
+
+        //strcpy(another->title, primaryTitle);
+        //strcpy(another->genre, genres);
+        //strcpy(another->year, startYear);
+        //strcpy(another->time, runtimeMinutes);
+        //printf("\nTitle: %s\nGenres: %s\n Year: %s\nRuntime: %s\n", another->title, another->genre, another->year, another->time);
+
+        if(strcmp(titleType,"movie") == 0)
+        tree = Insert(tree, ConvertToKey(primaryTitle), primaryTitle, genres, startYear, runtimeMinutes);
+
+    }
+    fclose(titleBasics);
+
+    return; //return tree
+
+}*/
+
+/*Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearStart, char *minutes)
+{
+    if(avl == NULL)
+    {
+        avl = (Movie *)malloc(sizeof(Movie));
+        strcpy(avl->key, nameKey);
+        strcpy(avl->title, nameReg);
+        strcpy(avl->genre, types);
+        strcpy(avl->year, yearStart);
+        strcpy(avl->time, minutes);
+        avl->left = NULL;
+        avl->right = NULL;
+    }
+
+    else
+    {
+        if(strcmp(nameKey, avl->key) > 0)
+        {
+            avl->right = Insert(avl->right, nameKey, nameReg, types, yearStart, minutes);
+            if(BF(avl) == -2)
+            {
+                if(strcmp(nameKey, avl->right->key) > 0)
+                    avl = RR(avl);
+                else
+                    avl = RL(avl);
+            }
+        }
+        else
+        {
+            avl->left = Insert(avl->left, nameKey, nameReg, types, yearStart, minutes);
+            if(BF(avl) == 2)
+            {
+                if(strcmp(nameKey, avl->left->key) < 0)
+                    avl = LL(avl);
+                else
+                    avl = LR(avl);
+            }
+        }
+    }
+    avl->height = height(avl);
+    return avl;
+}*/
 
 
 int height(Movie *avl)
@@ -123,6 +257,51 @@ Movie *rotateLeft(Movie *x)
     y->height = height(y);
     return y;
 }
+
+Movie *RR(Movie *x)
+{
+    x = rotateLeft(x);
+    return x;
+}
+
+Movie *LL(Movie *x)
+{
+    x = rotateRight(x);
+    return x;
+}
+
+Movie *LR(Movie *x)
+{
+    x->left = rotateLeft(x->left);
+    x = rotateRight(x);
+    return x;
+}
+
+Movie *RL(Movie *x)
+{
+    x->right = rotateRight(x->right);
+    x = rotateLeft(x);
+    return x;
+}
+
+void SearchForMovie(Movie* database, char* titleKey, int keyLen, int count)
+{
+    if(database == NULL)
+        return;
+    else if(strncmp(database->key, titleKey, keyLen) == 0)
+    {
+        printf("%d: %s\n", database->title, ++count);
+        SearchForMovie(database->left, titleKey, keyLen, count);
+        SearchForMovie(database->right, titleKey, keyLen, count);
+    }
+    else if(strncmp(database->key, titleKey, keyLen) < 0)
+    {
+        SearchForMovie(database->right, titleKey, keyLen, count);
+    }
+    else
+        SearchForMovie(database->left, titleKey, keyLen, count);
+}
+
 
 
 
