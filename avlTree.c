@@ -290,7 +290,7 @@ void SearchForMovie(Movie* database, char* titleKey, int keyLen, int count)
         return;
     else if(strncmp(database->key, titleKey, keyLen) == 0)
     {
-        printf("%d: %s\n", database->title, ++count);
+        printf("%d: %s\n",  ++count, database->title);
         SearchForMovie(database->left, titleKey, keyLen, count);
         SearchForMovie(database->right, titleKey, keyLen, count);
     }

@@ -151,8 +151,8 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
     if(movieToInsert == NULL)
     {
         printf("No movies found containing the entered string.");
-        printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
-
+        //printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
+        return NULL;
     }
     return Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
 
@@ -160,6 +160,10 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
 
 void PrintAll(Movie *catalogTree)
 {
+    if (catalogTree == NULL)
+    {
+        return;
+    }
     PrintAll(catalogTree->left);
     printf("Movie: %s\nGenre(s): %s\nRelease Year: %s\n Runtime: %s minutes\n\n", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time);
     PrintAll(catalogTree->right);
