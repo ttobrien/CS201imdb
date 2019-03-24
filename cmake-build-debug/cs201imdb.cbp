@@ -104,6 +104,9 @@
 		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/newCatalog.h">
 			<Option target="cs201imdb"/>
 		</Unit>
+		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/testing.c">
+			<Option target="cs201imdb"/>
+		</Unit>
 		<Unit filename="/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

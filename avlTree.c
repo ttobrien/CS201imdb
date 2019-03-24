@@ -89,7 +89,8 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
     return avl;
 }
 
-Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throughout program on strcmp
+
+Movie* Remove(Movie *avl, char *name)
 {
     Movie *temp;
 
@@ -99,7 +100,7 @@ Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throug
     }
     else
     {
-        if(strcmp(name, avl->key) < 0)
+        if(strcmp(name, avl->key) > 0)
         {
             avl->right = Remove(avl->right, name);
             if(BF(avl) == 2)
@@ -114,8 +115,9 @@ Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throug
                 }
             }
         }
-        else if(strcmp(name, avl->key) > 0)
+        else if(strcmp(name, avl->key) < 0)
         {
+            avl->left = Remove(avl->left, name);
             if(BF(avl) == -2)
             {
                 if(BF(avl->right) <= 0)
@@ -144,7 +146,6 @@ Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throug
                 strcpy(avl->genre, temp->genre);
 
                 avl->right = Remove(avl->right, temp->key);
-
                 if(BF(avl) == 2)
                 {
                     if(BF(avl->left) >= 0)
@@ -167,6 +168,7 @@ Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throug
     avl->height = height(avl);
     return avl;
 }
+
 
 void PrintInOrder(Movie *tree)
 {

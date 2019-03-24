@@ -4,6 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/cs201imdb.dir/newCatalog.c.o"
   "CMakeFiles/cs201imdb.dir/catalogs.c.o"
   "CMakeFiles/cs201imdb.dir/avlTree.c.o"
+  "CMakeFiles/cs201imdb.dir/testing.c.o"
   "cs201imdb.pdb"
   "cs201imdb.exe"
   "libcs201imdb.dll.a"
