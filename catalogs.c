@@ -30,7 +30,7 @@ char* ConvertToKey(char* title)
     int len = strlen(title);
     char* temp;
     char* key;
-    temp = (char *)malloc(len*sizeof(char));
+    temp = (char *)malloc((len+1)*sizeof(char));
     key = (char *)malloc((len+2)*sizeof(char));
 
 
@@ -71,15 +71,16 @@ char* ConvertToKey(char* title)
     }
 
     else
+    {
+        temp[len] = '\0';
         return temp;
-
+    }
 
     return key;
 }
 
 Movie* LoadCatalog(char* name)
 {
-    int movieCount = 0;
     FILE* catalogName = NULL;
     catalogName = fopen(name, "r");
     if(catalogName == NULL)
@@ -88,14 +89,7 @@ Movie* LoadCatalog(char* name)
         return NULL;
     }
 
-    fscanf(catalogName, "%d\n", &movieCount);
-
-    if(movieCount == 0)
-        return NULL;
-
     char key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
-
-
     Movie *catalogTree = NULL;
 
     while(!feof(catalogName))
@@ -111,12 +105,12 @@ Movie* LoadCatalog(char* name)
 
 Movie* SelectMovie(Movie *database)
 {
-    char titleKey[TITLE_SPACE];
+    char* titleKey;
     char title[TITLE_SPACE];
     printf("Enter name of movie that you would like to add to your catalog: ");
     fgets(title, TITLE_SPACE, stdin);
     strcpy(title, DeleteNewlineCharAtEnd(title));
-    strcpy(titleKey, ConvertToKey(title));
+    titleKey = ConvertToKey(title);
     int len = strlen(titleKey);
     SearchForMovie(database, titleKey, len);
     printf("Enter full title of movie from above list: ");

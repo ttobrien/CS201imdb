@@ -60,6 +60,7 @@ void UseCatalogMenu(Movie* database, char* name)
     Movie *catalogTree = LoadCatalog(name);
 
     while(editing) {
+        loop = false;
         while (!loop) {
             printf("\nSelect what you would like to do with catalog %s:\n", name);
             printf("(1) Add/Create a movie\n");
@@ -90,6 +91,7 @@ void UseCatalogMenu(Movie* database, char* name)
                 PrintAll(catalogTree);
                 break;
             case 6:
+            default:
                 editing = false;
                 break;
         }

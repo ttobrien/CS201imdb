@@ -89,6 +89,85 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
     return avl;
 }
 
+Movie* Remove(Movie *avl, char *name)//major issue could be signs fliiped throughout program on strcmp
+{
+    Movie *temp;
+
+    if(avl == NULL)
+    {
+        return NULL;
+    }
+    else
+    {
+        if(strcmp(name, avl->key) < 0)
+        {
+            avl->right = Remove(avl->right, name);
+            if(BF(avl) == 2)
+            {
+                if(BF(avl->left) >= 0)
+                {
+                    avl = LL(avl);
+                }
+                else
+                {
+                    avl = LR(avl);
+                }
+            }
+        }
+        else if(strcmp(name, avl->key) > 0)
+        {
+            if(BF(avl) == -2)
+            {
+                if(BF(avl->right) <= 0)
+                {
+                    avl = RR(avl);
+                }
+                else
+                {
+                    avl = RL(avl);
+                }
+            }
+        }
+        else
+        {
+            if(avl->right != NULL)
+            {
+                temp = avl->right;
+                while(temp->left != NULL)
+                {
+                    temp = temp->left;
+                }
+                strcpy(avl->key, temp->key);
+                strcpy(avl->title, temp->title);
+                strcpy(avl->year, temp->year);
+                strcpy(avl->time, temp->time);
+                strcpy(avl->genre, temp->genre);
+
+                avl->right = Remove(avl->right, temp->key);
+
+                if(BF(avl) == 2)
+                {
+                    if(BF(avl->left) >= 0)
+                    {
+                        avl = LL(avl);
+                    }
+                    else
+                    {
+                        avl = LR(avl);
+                    }
+                }
+            }
+            else
+            {
+                return avl->left;
+            }
+        }
+    }
+
+    avl->height = height(avl);
+    return avl;
+}
+
 void PrintInOrder(Movie *tree)
 {
     if(tree == NULL)
@@ -106,95 +185,6 @@ void PrintPreOrder(Movie* tree)
     PrintPreOrder(tree->left);
     PrintPreOrder(tree->right);
 }
-
-
-/*void LoadDatabase()
-{
-    FILE *titleBasics = NULL;
-    titleBasics = fopen("title.basics.tsv", "r");
-
-    if(titleBasics == NULL)//return NULL
-    {
-        printf("\ntitle.basics.tsv was not found\n\n");
-        return;
-    }
-
-    char tconst[15], titleType[15], primaryTitle[50], originalTitle[50], genres[50];
-    char isAdult[3], startYear[6], endYear[6], runtimeMinutes[6];
-    char headers[20], trash;
-
-    for(int i = 1; i <= 8; i++)
-    {
-        fscanf(titleBasics, "%s\t", headers);
-    }
-    fscanf(titleBasics, "%s", headers);
-
-    Movie *tree = NULL;
-
-    while(!feof(titleBasics))
-    {
-        fscanf(titleBasics, "%c", &trash);
-        fscanf(titleBasics, " %s %[^\t] %[^\t] %[^\t] %s %s %s %s %[^\n]", tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres);
-
-        //strcpy(another->title, primaryTitle);
-        //strcpy(another->genre, genres);
-        //strcpy(another->year, startYear);
-        //strcpy(another->time, runtimeMinutes);
-        //printf("\nTitle: %s\nGenres: %s\n Year: %s\nRuntime: %s\n", another->title, another->genre, another->year, another->time);
-
-        if(strcmp(titleType,"movie") == 0)
-        tree = Insert(tree, ConvertToKey(primaryTitle), primaryTitle, genres, startYear, runtimeMinutes);
-
-    }
-    fclose(titleBasics);
-
-    return; //return tree
-
-}*/
-
-/*Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearStart, char *minutes)
-{
-    if(avl == NULL)
-    {
-        avl = (Movie *)malloc(sizeof(Movie));
-        strcpy(avl->key, nameKey);
-        strcpy(avl->title, nameReg);
-        strcpy(avl->genre, types);
-        strcpy(avl->year, yearStart);
-        strcpy(avl->time, minutes);
-        avl->left = NULL;
-        avl->right = NULL;
-    }
-
-    else
-    {
-        if(strcmp(nameKey, avl->key) > 0)
-        {
-            avl->right = Insert(avl->right, nameKey, nameReg, types, yearStart, minutes);
-            if(BF(avl) == -2)
-            {
-                if(strcmp(nameKey, avl->right->key) > 0)
-                    avl = RR(avl);
-                else
-                    avl = RL(avl);
-            }
-        }
-        else
-        {
-            avl->left = Insert(avl->left, nameKey, nameReg, types, yearStart, minutes);
-            if(BF(avl) == 2)
-            {
-                if(strcmp(nameKey, avl->left->key) < 0)
-                    avl = LL(avl);
-                else
-                    avl = LR(avl);
-            }
-        }
-    }
-    avl->height = height(avl);
-    return avl;
-}*/
-
 
 int height(Movie *avl)
 {

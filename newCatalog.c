@@ -85,12 +85,13 @@ void NewCatalog(Movie *database)
 
 
 
-    printf("What is the first title you would like to add to your catalog? ");
+    printf("You will now add the first movie to your new catalog.\n");
     FILE* newfile = NULL;
     newfile = fopen(name, "w");
-    fprintf(newfile, "0\n");
 
     Movie* firstMovie = NULL;
+    char trash;
+    scanf("%c", &trash);
 
     while(firstMovie == NULL)
         firstMovie = InsertToCatalog(database, firstMovie);
