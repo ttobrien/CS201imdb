@@ -86,8 +86,6 @@ void NewCatalog(Movie *database)
 
 
     printf("What is the first title you would like to add to your catalog? ");
-    //take in partial movie name into a char* (is there a dynamic way or just define it to 100?)
-    //make select movie function, returns struct of movie data
     FILE* newfile = NULL;
     newfile = fopen(name, "w");
     fprintf(newfile, "0\n");

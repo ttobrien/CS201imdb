@@ -111,30 +111,36 @@ Movie* LoadCatalog(char* name)
 
 Movie* SelectMovie(Movie *database)
 {
-    char* titleKey;
-    char* title;
-    titleKey = (char *)malloc(TITLE_SPACE * sizeof(char));
-    title = (char *)malloc(TITLE_SPACE * sizeof(char));
-
+    char titleKey[TITLE_SPACE];
+    char title[TITLE_SPACE];
     printf("Enter name of movie that you would like to add to your catalog: ");
     fgets(title, TITLE_SPACE, stdin);
-    titleKey = ConvertToKey(title);
-    SearchForMovie(database, titleKey, strlen(titleKey), 0);
+    strcpy(title, DeleteNewlineCharAtEnd(title));
+    strcpy(titleKey, ConvertToKey(title));
+    int len = strlen(titleKey);
+    SearchForMovie(database, titleKey, len);
     printf("Enter full title of movie from above list: ");
     fgets(title, TITLE_SPACE, stdin);
+    strcpy(title, DeleteNewlineCharAtEnd(title));
+    return GetMovie(database, ConvertToKey(title));
+}
 
-    return GetMovie(database, title);
+char* DeleteNewlineCharAtEnd(char *str)
+{
+    int len = strlen(str);
+    str[len-1] = '\0';
+    return str;
 }
 
 Movie* GetMovie(Movie *database, char *movieTitle)
 {
     if(database == NULL)
         return NULL;
-    else if(strcmp(database->title, movieTitle) == 0)
+    else if(strcmp(database->key, movieTitle) == 0)
     {
         return database;
     }
-    else if(strcmp(database->title, movieTitle) < 0)
+    else if(strcmp(database->key, movieTitle) < 0)
     {
         return GetMovie(database->right, movieTitle);
     }
@@ -148,7 +154,7 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
     Movie* movieToInsert = SelectMovie(database);
     if(movieToInsert == NULL)
     {
-        printf("No movies found containing the entered string.");
+        printf("No movies found containing the entered string.\n");
         //printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
         return NULL;
     }

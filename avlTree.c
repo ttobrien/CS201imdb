@@ -284,22 +284,22 @@ Movie *RL(Movie *x)
     return x;
 }
 
-void SearchForMovie(Movie* database, char* titleKey, int keyLen, int count)
+void SearchForMovie(Movie* database, char* titleKey, int keyLen)
 {
     if(database == NULL)
         return;
     else if(strncmp(database->key, titleKey, keyLen) == 0)
     {
-        printf("%d: %s\n",  ++count, database->title);
-        SearchForMovie(database->left, titleKey, keyLen, count);
-        SearchForMovie(database->right, titleKey, keyLen, count);
+        printf("%s\n", database->title);
+        SearchForMovie(database->left, titleKey, keyLen);
+        SearchForMovie(database->right, titleKey, keyLen);
     }
     else if(strncmp(database->key, titleKey, keyLen) < 0)
     {
-        SearchForMovie(database->right, titleKey, keyLen, count);
+        SearchForMovie(database->right, titleKey, keyLen);
     }
     else
-        SearchForMovie(database->left, titleKey, keyLen, count);
+        SearchForMovie(database->left, titleKey, keyLen);
 }
 
 

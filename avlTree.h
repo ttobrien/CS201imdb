@@ -36,7 +36,7 @@ Movie *LR(Movie *);
 Movie *RL(Movie *);
 int BF(Movie *);
 int height(Movie *);
-void SearchForMovie(Movie *, char *, int, int);
+void SearchForMovie(Movie *, char *, int);
 
 
 #endif //CS201IMDB_AVLTREE_H
