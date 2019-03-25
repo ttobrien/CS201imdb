@@ -118,9 +118,11 @@ Movie* SelectMovie(Movie *database)
     SearchForMovie(database, titleKey, len);
     printf("Enter full title of movie from above list: ");
     scanf(" %[^\n]", title);
+    strcpy(titleKey, ConvertToKey(title));
+    printf("The key for whatt you entered: (%s)\n", titleKey);
     //fgets(title, TITLE_SPACE, stdin);
     //strcpy(title, DeleteNewlineCharAtEnd(title));
-    return GetMovie(database, title);
+    return GetMovie(database, titleKey);
     //return GetMovie(database, ConvertToKey(title));
 
 }
@@ -137,11 +139,11 @@ Movie* GetMovie(Movie *database, char *movieTitle)
     if(database == NULL)
         return NULL;
 
-    else if(strcmp(database->title, movieTitle) == 0) //else if(strcmp(database->key, movieTitle) == 0)
+    else if(strcmp(database->key, movieTitle) == 0) //else if(strcmp(database->key, movieTitle) == 0)
     {
         return database;
     }
-    else if(strcmp(database->title, movieTitle) < 0) //else if(strcmp(database->key, movieTitle) < 0)
+    else if(strcmp(database->key, movieTitle) < 0) //else if(strcmp(database->key, movieTitle) < 0)
     {
         return GetMovie(database->right, movieTitle);
     }

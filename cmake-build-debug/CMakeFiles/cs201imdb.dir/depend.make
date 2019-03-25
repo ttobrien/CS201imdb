@@ -4,11 +4,13 @@
 CMakeFiles/cs201imdb.dir/avlTree.c.o: ../avlTree.c
 CMakeFiles/cs201imdb.dir/avlTree.c.o: ../avlTree.h
 CMakeFiles/cs201imdb.dir/avlTree.c.o: ../catalogs.h
+CMakeFiles/cs201imdb.dir/avlTree.c.o: ../display.h
 CMakeFiles/cs201imdb.dir/avlTree.c.o: ../libraries.h
 
 CMakeFiles/cs201imdb.dir/catalogs.c.o: ../avlTree.h
 CMakeFiles/cs201imdb.dir/catalogs.c.o: ../catalogs.c
 CMakeFiles/cs201imdb.dir/catalogs.c.o: ../catalogs.h
+CMakeFiles/cs201imdb.dir/catalogs.c.o: ../display.h
 CMakeFiles/cs201imdb.dir/catalogs.c.o: ../libraries.h
 
 CMakeFiles/cs201imdb.dir/display.c.o: ../avlTree.h
@@ -31,7 +33,4 @@ CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../libraries.h
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.c
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.h
 
-CMakeFiles/cs201imdb.dir/testing.c.o: ../avlTree.h
-CMakeFiles/cs201imdb.dir/testing.c.o: ../libraries.h
-CMakeFiles/cs201imdb.dir/testing.c.o: ../testing.c
 
