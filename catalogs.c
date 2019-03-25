@@ -150,9 +150,12 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
     {
         printf("No movies found containing the entered string.\n");
         //printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
-        return NULL;
+        return catalogTree;
     }
-    return Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
+    catalogTree = Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
+    catalogTree = InitializeMediaTypeMenu(catalogTree, movieToInsert->key);
+    catalogTree = InitializeDateMenu(catalogTree, movieToInsert->key);
+    return catalogTree
 
 }
 

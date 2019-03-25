@@ -31,3 +31,7 @@ CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../libraries.h
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.c
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.h
 
+CMakeFiles/cs201imdb.dir/testing.c.o: ../avlTree.h
+CMakeFiles/cs201imdb.dir/testing.c.o: ../libraries.h
+CMakeFiles/cs201imdb.dir/testing.c.o: ../testing.c
+

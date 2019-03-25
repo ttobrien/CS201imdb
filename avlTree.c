@@ -54,6 +54,8 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
         strcpy(avl->genre, types);
         strcpy(avl->year, yearStart);
         strcpy(avl->time, minutes);
+        strcpy(avl->date, "empty");
+        strcpy(avl->media, "empty");
         avl->left = NULL;
         avl->right = NULL;
     }
@@ -88,7 +90,6 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
     avl->height = height(avl);
     return avl;
 }
-
 
 Movie* Remove(Movie *avl, char *name)
 {
@@ -144,6 +145,8 @@ Movie* Remove(Movie *avl, char *name)
                 strcpy(avl->year, temp->year);
                 strcpy(avl->time, temp->time);
                 strcpy(avl->genre, temp->genre);
+                strcpy(avl->media, temp->media);
+                strcpy(avl->date, temp->date);
 
                 avl->right = Remove(avl->right, temp->key);
                 if(BF(avl) == 2)
@@ -169,6 +172,61 @@ Movie* Remove(Movie *avl, char *name)
     return avl;
 }
 
+Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
+{
+
+    if(avl == NULL)
+    {
+        printf("ERROR: Movie not found. Media type not added.\n");
+        return NULL;
+    }
+
+    else
+    {
+        if(strcmp(nameKey, avl->key) == 0)
+        {
+            strcpy(avl->media, mediaType);
+            return avl;
+        }
+        else if(strcmp(nameKey, avl->key) > 0)
+        {
+            avl->right = UpdateMediaType(avl->right, nameKey, mediaType);
+        }
+        else
+        {
+            avl->left = UpdateMediaType(avl->left, nameKey, mediaType);
+        }
+    }
+    return avl;
+}
+
+Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
+{
+
+    if(avl == NULL)
+    {
+        printf("ERROR: Movie not found. Date of acquisition not added.\n");
+        return NULL;
+    }
+
+    else
+    {
+        if(strcmp(nameKey, avl->key) == 0)
+        {
+            strcpy(avl->date, dateAcquired);
+            return avl;
+        }
+        else if(strcmp(nameKey, avl->key) > 0)
+        {
+            avl->right = UpdateDate(avl->right, nameKey, dateAcquired);
+        }
+        else
+        {
+            avl->left = UpdateDate(avl->left, nameKey, dateAcquired);
+        }
+    }
+    return avl;
+}
 
 void PrintInOrder(Movie *tree)
 {

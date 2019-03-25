@@ -21,7 +21,8 @@ Movie* StartUp()
 int MainMenu()
 {
     bool loop = false;
-    int choice;
+    int choice, digit;
+    char input[200];
 
     printf("\nWould you like to:\n");
     printf("(1) Create a new catalog\n");
@@ -31,8 +32,13 @@ int MainMenu()
     while(! loop)
     {
         printf("\nEnter number of choice: ");
-        scanf("%d", &choice);
-        loop = CheckValidInput(1, 3, choice);
+        scanf("%s", input);
+        digit = CheckInputIsDigit(input);
+        if(digit != -1)
+        {
+            choice = digit;
+            loop = CheckValidInput(1, 3, choice);
+        }
     }
     return choice;
 }
@@ -52,11 +58,29 @@ bool CheckValidInput(int lower, int upper, int num)
     return liang;
 }
 
+int CheckInputIsDigit(char *input)
+{
+    int len = strlen(input);
+    if(len != 1)
+    {
+        printf("ERROR: Single integer digit expected.\n");
+        return -1;
+    }
+    else if (isdigit(input[0]))
+        return atoi(input);
+    else
+    {
+        printf("ERROR: Single integer digit expected.\n");
+        return -1;
+    }
+}
+
 void UseCatalogMenu(Movie* database, char* name)
 {
-    int choice;
-    bool loop = false;
+    int choice, digit;
+    bool loop;
     bool editing = true;
+    char input[200];
     Movie *catalogTree = LoadCatalog(name);
 
     while(editing) {
@@ -70,8 +94,13 @@ void UseCatalogMenu(Movie* database, char* name)
             printf("(5) View all titles\n");
             printf("(6) Return to main menu\n");
             printf("Enter number of choice: ");
-            scanf("%d", &choice);
-            loop = CheckValidInput(1, 6, choice);
+            scanf("%s", input);
+            digit = CheckInputIsDigit(input);
+            if(digit != -1)
+            {
+                choice = digit;
+                loop = CheckValidInput(1, 3, choice);
+            }
         }
 
         switch (choice) {
@@ -79,7 +108,7 @@ void UseCatalogMenu(Movie* database, char* name)
                 catalogTree = InsertToCatalog(database, catalogTree);
                 break;
             case 2:
-                //Remove(name);
+                Remove(database, name);
                 break;
             case 3:
                 //Update(name);
@@ -113,5 +142,59 @@ void UseCatalogMenu(Movie* database, char* name)
     fclose(writeFile);
 
     return;
+}
+
+Movie *InitializeMediaTypeMenu(Movie *catalogTree, char *name)
+{
+    char input[200];
+    bool loop = false;
+    int digit, choice;
+
+    printf("Choose the media type of the movie\n");
+    printf("(1) dvd\n");
+    printf("(2) bluray\n");
+    printf("(3) digital\n");
+    while(! loop)
+    {
+        printf("Enter number of choice: ");
+        scanf("%s", input);
+        digit = CheckInputIsDigit(input);
+        if (digit != -1) {
+            choice = digit;
+            loop = CheckValidInput(1, 3, choice);
+        }
+    }
+    if(choice == 1)
+        catalogTree = UpdateMediaType(catalogTree, name, "dvd");
+    else if(choice == 2)
+        catalogTree = UpdateMediaType(catalogTree, name, "bluray");
+    else
+        catalogTree = UpdateMediaType(catalogTree, name, "digital");
+    return catalogTree;
+
+}
+
+Movie *InitializeDateMenu(Movie *catalogTree, char *name)
+{
+    char input[200];
+    bool loop = false;
+    int len;
+    while(! loop)
+    {
+        printf("Enter date that the movie was acquired in form of MM/DD/YYYY: ");
+        scanf("%s", input);
+        len = strlen(input);
+        if(len == 10)
+        {
+            loop = true;
+        }
+        else
+        {
+            printf("ERROR: Date not entered in form of MM/DD/YYYY\n");
+        }
+    }
+    catalogTree = UpdateDate(catalogTree, name, input);
+    return catalogTree;
+
 }
 

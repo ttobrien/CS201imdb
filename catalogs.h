@@ -7,6 +7,7 @@
 
 #include "libraries.h"
 #include "avlTree.h"
+#include "display.h"
 
 char *EditCatalog();
 char *ConvertToKey(char *);

@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include "avlTree.h"
 
-int main(void)
+/*int main(void)
 {
     Movie* tree = NULL;
     tree = Insert(tree, "abcd", "title1", "genre1", "year1", "time1");
@@ -30,6 +30,36 @@ int main(void)
     tree = Insert(tree, "ma", "title18", "genre18", "year18", "time18");
 
     PrintInOrder(tree);
+    printf("\n\n");
+    PrintPreOrder(tree);
+
+    tree = Remove(tree, "a");
+    tree = Remove(tree, "abcde");
+    tree = Remove(tree, "kabcd");
+    tree = Remove(tree, "azbcd");
+    tree = Remove(tree, "abcd");
+    tree = Remove(tree, "abc");
+    tree = Remove(tree, "abcde");
+    tree = Remove(tree, "a");
+    tree = Remove(tree, "abcd");
+    tree = Remove(tree, "abcvycd");
+    tree = Remove(tree, "kdjbchcabcd");
+    tree = Remove(tree, "kabcd");
+    tree = Remove(tree, "azbcd");
+    tree = Remove(tree, "azzcd");
+    tree = Remove(tree, "zabcd");
+    tree = Remove(tree, "bcd");
+    tree = Remove(tree, "bcda");
+    tree = Remove(tree, "bcdj");
+    tree = Remove(tree, "lmo");
+    tree = Remove(tree, "md");
+    tree = Remove(tree, "z");
+    tree = Remove(tree, "ma");
+
+    printf("\n\n");
+    PrintInOrder(tree);
+    printf("\n\n");
+    PrintPreOrder(tree);
 
     return 0;
-}
+}*/

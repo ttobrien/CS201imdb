@@ -18,6 +18,8 @@ typedef struct Movie
     char genre[GENRE_SPACE];
     char year[NUM_SPACE];
     char time[NUM_SPACE];
+    char media[10];
+    char date[15];
     struct Movie *left;
     struct Movie *right;
     int height;
@@ -26,6 +28,8 @@ typedef struct Movie
 Movie* LoadDatabase();
 Movie* Insert(Movie *, char *, char *, char *, char *, char *);
 Movie* Remove(Movie *, char *);
+Movie* UpdateMediaType(Movie *, char *, char *);
+Movie* UpdateDate(Movie *, char *, char *);
 void PrintPreOrder(Movie *);
 void PrintInOrder(Movie *);
 Movie* rotateRight(Movie *);
