@@ -13,19 +13,32 @@ void NewCatalog(Movie *database)
 {
     char name[NAME_LEN];
     bool exists = true;
-    char existingName[NAME_LEN];
-    int nameCount;
-    int nameMatch;
+    //char existingName[NAME_LEN];
+    //int nameCount;
+    //int nameMatch;
 
     while(exists)
     {
-        nameCount = 0;
-        nameMatch = 0;
+        //nameCount = 0;
+        //nameMatch = 0;
 
         printf("\nWhat would you like to name this catalog? ");
         scanf("%s", name);
+	
+	FILE* newFile = NULL;
+	newFile = fopen(name, "r");
+	if(newFile != NULL)
+	{
+		printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
+	}
+	else
+	{
+		exists = false;
+	}
+    }
 
-        FILE *namesFile = NULL;
+
+        /*FILE *namesFile = NULL;
         namesFile = fopen("CatalogNames", "r");
         if(namesFile == NULL)
         {
@@ -81,7 +94,7 @@ void NewCatalog(Movie *database)
                 fclose(namesFile);
             }
         }
-    }
+    }*/
 
 
 
