@@ -155,7 +155,7 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
     catalogTree = Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
     catalogTree = InitializeMediaTypeMenu(catalogTree, movieToInsert->key);
     catalogTree = InitializeDateMenu(catalogTree, movieToInsert->key);
-    return catalogTree
+    return catalogTree;
 
 }
 
