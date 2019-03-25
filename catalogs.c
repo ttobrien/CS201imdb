@@ -89,13 +89,15 @@ Movie* LoadCatalog(char* name)
         return NULL;
     }
 
-    char key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
+    char key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE], mediaType[10], dateAcquired[15];
     Movie *catalogTree = NULL;
 
     while(!feof(catalogName))
     {
-        fscanf(catalogName, " %[^\t] %[^\t] %[^\t] %s %[^\n]", key, primaryTitle, genres, startYear, runtimeMinutes);
+        fscanf(catalogName, " %[^\t] %[^\t] %[^\t] %s %s %s %[^\n]", key, primaryTitle, genres, startYear, runtimeMinutes, mediaType, dateAcquired);
         catalogTree = Insert(catalogTree, key, primaryTitle, genres, startYear, runtimeMinutes);
+        catalogTree = UpdateMediaType(catalogTree, key, mediaType);
+        catalogTree = UpdateDate(catalogTree, key, dateAcquired);
     }
 
     fclose(catalogName);
@@ -108,15 +110,19 @@ Movie* SelectMovie(Movie *database)
     char* titleKey;
     char title[TITLE_SPACE];
     printf("Enter name of movie that you would like to add to your catalog: ");
-    fgets(title, TITLE_SPACE, stdin);
-    strcpy(title, DeleteNewlineCharAtEnd(title));
+    scanf(" %[^\n]", title);
+    //fgets(title, TITLE_SPACE, stdin);
+    //strcpy(title, DeleteNewlineCharAtEnd(title));
     titleKey = ConvertToKey(title);
     int len = strlen(titleKey);
     SearchForMovie(database, titleKey, len);
     printf("Enter full title of movie from above list: ");
-    fgets(title, TITLE_SPACE, stdin);
-    strcpy(title, DeleteNewlineCharAtEnd(title));
-    return GetMovie(database, ConvertToKey(title));
+    scanf(" %[^\n]", title);
+    //fgets(title, TITLE_SPACE, stdin);
+    //strcpy(title, DeleteNewlineCharAtEnd(title));
+    return GetMovie(database, title);
+    //return GetMovie(database, ConvertToKey(title));
+
 }
 
 char* DeleteNewlineCharAtEnd(char *str)
@@ -130,11 +136,12 @@ Movie* GetMovie(Movie *database, char *movieTitle)
 {
     if(database == NULL)
         return NULL;
-    else if(strcmp(database->key, movieTitle) == 0)
+
+    else if(strcmp(database->title, movieTitle) == 0) //else if(strcmp(database->key, movieTitle) == 0)
     {
         return database;
     }
-    else if(strcmp(database->key, movieTitle) < 0)
+    else if(strcmp(database->title, movieTitle) < 0) //else if(strcmp(database->key, movieTitle) < 0)
     {
         return GetMovie(database->right, movieTitle);
     }
@@ -166,7 +173,7 @@ void PrintAll(Movie *catalogTree)
         return;
     }
     PrintAll(catalogTree->left);
-    printf("Movie: %s\nGenre(s): %s\nRelease Year: %s\n Runtime: %s minutes\n\n", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time);
+    printf("Movie: %s\nGenre(s): %s\nRelease Year: %s\nRuntime: %s minutes\nMedia Type: %s\nDate Acquired: %s", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
     PrintAll(catalogTree->right);
 }
 
@@ -177,6 +184,6 @@ void PrintNodeToFile(Movie *catalogTree, FILE *writeFile)
         return;
     }
     PrintNodeToFile(catalogTree->left, writeFile);
-    fprintf(writeFile, "%s\t%s\t%s\t%s\t%s\n", catalogTree->key, catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time);
+    fprintf(writeFile, "%s\t%s\t%s\t%s\t%s\t%s\t%s\n", catalogTree->key, catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
     PrintNodeToFile(catalogTree->right, writeFile);
 }

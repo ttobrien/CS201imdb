@@ -45,17 +45,17 @@ int MainMenu()
 
 bool CheckValidInput(int lower, int upper, int num)
 {
-    bool liang;
+    bool valid;
     if( (num < lower) || (num > upper) )
     {
         printf("Error: Enter a number %d through %d.\n", lower, upper);
-        liang = false;
+        valid = false;
     }
     else
     {
-        liang = true;
+        valid = true;
     }
-    return liang;
+    return valid;
 }
 
 int CheckInputIsDigit(char *input)
@@ -99,7 +99,7 @@ void UseCatalogMenu(Movie* database, char* name)
             if(digit != -1)
             {
                 choice = digit;
-                loop = CheckValidInput(1, 3, choice);
+                loop = CheckValidInput(1, 6, choice);
             }
         }
 
@@ -131,11 +131,12 @@ void UseCatalogMenu(Movie* database, char* name)
 
     if(catalogTree == NULL)
     {
-        fprintf(writeFile, "0\n");
+        //fprintf(writeFile, "0\n");
+        printf("\nNOTICE: No movies left in this catalog, so it will be deleted. You can make a new catalog of the same name.");
     }
     else
     {
-        fprintf(writeFile, "1\n");
+        //fprintf(writeFile, "1\n");
         PrintNodeToFile(catalogTree, writeFile);
     }
 
