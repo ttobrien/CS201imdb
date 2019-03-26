@@ -170,6 +170,30 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
 
 }
 
+void PrintOneMovie(Movie *catalogTree, char *movieKey)
+{
+    if(catalogTree == NULL)
+    {
+        printf("Movie not found.\n");
+        return;
+    }
+
+    else if(strcmp(catalogTree->key, movieKey) == 0) //else if(strcmp(database->key, movieTitle) == 0)
+    {
+        printf("\nMovie: %s\nGenre(s): %s\nRelease Year: %s\nRuntime: %s minutes\nMedia Type: %s\nDate Acquired: %s\n\n", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
+
+        return;
+    }
+    else if(strcmp(catalogTree->key, movieKey) < 0) //else if(strcmp(database->key, movieTitle) < 0)
+    {
+        GetMovie(catalogTree->right, movieKey);
+    }
+    else
+        GetMovie(catalogTree->left, movieKey);
+
+}
+
+
 void PrintAll(Movie *catalogTree)
 {
     if (catalogTree == NULL)
@@ -177,7 +201,7 @@ void PrintAll(Movie *catalogTree)
         return;
     }
     PrintAll(catalogTree->left);
-    printf("Movie: %s\nGenre(s): %s\nRelease Year: %s\nRuntime: %s minutes\nMedia Type: %s\nDate Acquired: %s", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
+    printf("Movie: %s\nGenre(s): %s\nRelease Year: %s\nRuntime: %s minutes\nMedia Type: %s\nDate Acquired: %s\n\n", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
     PrintAll(catalogTree->right);
 }
 

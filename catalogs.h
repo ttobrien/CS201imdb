@@ -17,6 +17,8 @@ Movie* SelectMovie(Movie *);
 Movie* GetMovie(Movie *, char *);
 void PrintAll(Movie *);
 void PrintNodeToFile(Movie *, FILE *);
+void PrintOneMovie(Movie *, char *);
+
 //char* DeleteNewlineCharAtEnd(char *);
 
 

@@ -97,6 +97,7 @@ Movie* Remove(Movie *avl, char *name)
 
     if(avl == NULL)
     {
+        printf("Title not found. Movie not removed. Before trying again, view all movies in your catalog with option 6.\n");
         return NULL;
     }
     else

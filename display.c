@@ -82,6 +82,7 @@ void UseCatalogMenu(Movie* database, char* name)
     bool editing = true;
     char input[200];
     Movie *catalogTree = LoadCatalog(name);
+    char titleToUse[TITLE_SPACE];
 
     while(editing) {
         loop = false;
@@ -109,16 +110,24 @@ void UseCatalogMenu(Movie* database, char* name)
                 catalogTree = InsertToCatalog(database, catalogTree);
                 break;
             case 2:
-                catalogTree = Remove(catalogTree, name);
+                printf("\nEnter full exact title of movie to be deleted: ");
+                scanf(" %[^\n]", titleToUse);
+                catalogTree = Remove(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 3:
-
+                printf("\nEnter full exact title of movie to be updated: ");
+                scanf(" %[^\n]", titleToUse);
+                catalogTree = InitializeMediaTypeMenu(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 4:
-
+                printf("\nEnter full exact title of movie to be updated: ");
+                scanf(" %[^\n]", titleToUse);
+                catalogTree = InitializeDateMenu(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 5:
-
+                printf("\nEnter full exact title of movie to be view: ");
+                scanf(" %[^\n]", titleToUse);
+                PrintOneMovie(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 6:
                 PrintAll(catalogTree);
