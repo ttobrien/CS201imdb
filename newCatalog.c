@@ -108,10 +108,10 @@ void NewCatalog(Movie *database)
 
     while(firstMovie == NULL)
         firstMovie = InsertToCatalog(database, firstMovie);
+    fprintf(newfile, "1\n");
     PrintNodeToFile(firstMovie, newfile);
 
     fclose(newfile);
-
 
     int nextStep;
     bool loop = false;

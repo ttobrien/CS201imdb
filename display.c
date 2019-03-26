@@ -89,17 +89,18 @@ void UseCatalogMenu(Movie* database, char* name)
             printf("\nSelect what you would like to do with catalog %s:\n", name);
             printf("(1) Add/Create a movie\n");
             printf("(2) Remove a movie\n");
-            printf("(3) Update a movie\n");
-            printf("(4) View a movie\n");
-            printf("(5) View all titles\n");
-            printf("(6) Return to main menu\n");
+            printf("(3) Update a movie's media type\n");
+            printf("(4) Update a movie's date of acquisition\n");
+            printf("(5) View a movie\n");
+            printf("(6) View all titles\n");
+            printf("(7) Return to main menu\n");
             printf("Enter number of choice: ");
             scanf("%s", input);
             digit = CheckInputIsDigit(input);
             if(digit != -1)
             {
                 choice = digit;
-                loop = CheckValidInput(1, 6, choice);
+                loop = CheckValidInput(1, 7, choice);
             }
         }
 
@@ -108,18 +109,21 @@ void UseCatalogMenu(Movie* database, char* name)
                 catalogTree = InsertToCatalog(database, catalogTree);
                 break;
             case 2:
-                Remove(database, name);
+                catalogTree = Remove(catalogTree, name);
                 break;
             case 3:
-                //Update(name);
+
                 break;
             case 4:
-                //PrintMovie(name);
+
                 break;
             case 5:
-                PrintAll(catalogTree);
+
                 break;
             case 6:
+                PrintAll(catalogTree);
+                break;
+            case 7:
             default:
                 editing = false;
                 break;
@@ -131,12 +135,12 @@ void UseCatalogMenu(Movie* database, char* name)
 
     if(catalogTree == NULL)
     {
-        //fprintf(writeFile, "0\n");
-        printf("\nNOTICE: No movies left in this catalog, so it will be deleted. You can make a new catalog of the same name.");
+        fprintf(writeFile, "0\n");
+        //printf("\nNOTICE: No movies left in this catalog, so it will be deleted. You can make a new catalog of the same name.");
     }
     else
     {
-        //fprintf(writeFile, "1\n");
+        fprintf(writeFile, "1\n");
         PrintNodeToFile(catalogTree, writeFile);
     }
 

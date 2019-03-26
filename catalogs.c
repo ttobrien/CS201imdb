@@ -5,7 +5,7 @@
 #include "catalogs.h"
 
 
-char* EditCatalog()//make a loop
+char* EditCatalog()
 {
     char* name;
     name = (char *)malloc(NAME_LEN * sizeof(char));
@@ -91,6 +91,8 @@ Movie* LoadCatalog(char* name)
 
     char key[TITLE_SPACE], primaryTitle[TITLE_SPACE], genres[GENRE_SPACE], startYear[NUM_SPACE], runtimeMinutes[NUM_SPACE], mediaType[10], dateAcquired[15];
     Movie *catalogTree = NULL;
+    int movieSignal;
+    fscanf(catalogName, "%d\n", &movieSignal);
 
     while(!feof(catalogName))
     {

@@ -12,9 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3f272762-9c01-4f47-91b7-2b68e62717ee" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/catalogs.c" beforeDir="false" afterPath="$PROJECT_DIR$/catalogs.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/cs201imdb.dir/testing.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/display.c" beforeDir="false" afterPath="$PROJECT_DIR$/display.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/newCatalog.c" beforeDir="false" afterPath="$PROJECT_DIR$/newCatalog.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,8 +34,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/display.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2227">
-              <caret line="134" column="128" selection-start-line="134" selection-start-column="128" selection-end-line="134" selection-end-column="128" />
+            <state relative-caret-position="-579">
+              <caret line="140" column="8" lean-forward="true" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -52,8 +52,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/catalogs.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="145" column="32" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
+            <state relative-caret-position="-984">
+              <caret line="93" column="20" lean-forward="true" selection-start-line="93" selection-start-column="20" selection-end-line="93" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -70,7 +70,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/avlTree.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2919">
+            <state relative-caret-position="4398">
               <caret line="342" column="40" selection-start-line="342" selection-start-column="40" selection-end-line="342" selection-end-column="40" />
             </state>
           </provider>
@@ -86,8 +86,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/newCatalog.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-51">
-              <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+            <state relative-caret-position="1819">
+              <caret line="113" column="20" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -109,22 +109,21 @@
         <option value="$PROJECT_DIR$/main.c" />
         <option value="$PROJECT_DIR$/newCatalog.h" />
         <option value="$PROJECT_DIR$/makefile" />
-        <option value="$PROJECT_DIR$/newCatalog.c" />
         <option value="$PROJECT_DIR$/avlTree.h" />
         <option value="$PROJECT_DIR$/testing.c" />
         <option value="$PROJECT_DIR$/display.h" />
-        <option value="$PROJECT_DIR$/display.c" />
         <option value="$PROJECT_DIR$/avlTree.c" />
         <option value="$PROJECT_DIR$/catalogs.h" />
+        <option value="$PROJECT_DIR$/display.c" />
+        <option value="$PROJECT_DIR$/newCatalog.c" />
         <option value="$PROJECT_DIR$/catalogs.c" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="582" />
-    <option name="y" value="-18" />
-    <option name="width" value="978" />
-    <option name="height" value="1039" />
+    <option name="x" value="952" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -183,18 +182,18 @@
       <updated>1552273565496</updated>
       <workItem from="1552273569182" duration="5825000" />
       <workItem from="1553027118923" duration="49387000" />
-      <workItem from="1553533467746" duration="9336000" />
+      <workItem from="1553533467746" duration="11634000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="64548000" />
+    <option name="totallyTimeSpent" value="66846000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15369128" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.020134227" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -240,13 +239,6 @@
         <state relative-caret-position="-226" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/avlTree.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2919">
-          <caret line="342" column="40" selection-start-line="342" selection-start-column="40" selection-end-line="342" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.c">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -264,24 +256,31 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/avlTree.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4398">
+          <caret line="342" column="40" selection-start-line="342" selection-start-column="40" selection-end-line="342" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/newCatalog.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-51">
-          <caret line="39" lean-forward="true" selection-start-line="39" selection-end-line="39" />
+        <state relative-caret-position="1819">
+          <caret line="113" column="20" selection-start-line="113" selection-start-column="20" selection-end-line="113" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/display.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2227">
-          <caret line="134" column="128" selection-start-line="134" selection-start-column="128" selection-end-line="134" selection-end-column="128" />
+        <state relative-caret-position="-579">
+          <caret line="140" column="8" lean-forward="true" selection-start-line="140" selection-start-column="8" selection-end-line="140" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/catalogs.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="145" column="32" selection-start-line="145" selection-start-column="32" selection-end-line="145" selection-end-column="32" />
+        <state relative-caret-position="-984">
+          <caret line="93" column="20" lean-forward="true" selection-start-line="93" selection-start-column="20" selection-end-line="93" selection-end-column="20" />
         </state>
       </provider>
     </entry>
