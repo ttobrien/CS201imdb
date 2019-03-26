@@ -154,7 +154,7 @@ Movie* GetMovie(Movie *database, char *movieTitle)
 
 }
 
-Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
+Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work on first try
 {
     Movie* movieToInsert = SelectMovie(database);
     if(movieToInsert == NULL)

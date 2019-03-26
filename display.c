@@ -122,7 +122,7 @@ void UseCatalogMenu(Movie* database, char* name)
             case 4:
                 printf("\nEnter full exact title of movie to be updated: ");
                 scanf(" %[^\n]", titleToUse);
-                catalogTree = InitializeDateMenu(catalogTree, ConvertToKey(titleToUse));
+                catalogTree = InitializeDateMenu(catalogTree, ConvertToKey(titleToUse)); //had issue with A Day Without Lies after changing media type
                 break;
             case 5:
                 printf("\nEnter full exact title of movie to be view: ");
