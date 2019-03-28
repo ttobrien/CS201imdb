@@ -12,6 +12,7 @@
 #include <stdbool.h>
 #include <ctype.h>
 
-#define NAME_LEN 20
+#define FILENAME_LEN 100
+#define INPUT_LEN 250
 
 #endif //CS201IMDB_LIBRARIES_H

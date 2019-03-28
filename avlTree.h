@@ -7,9 +7,9 @@
 
 #include "libraries.h"
 
-#define TITLE_SPACE 120
-#define GENRE_SPACE 120
-#define NUM_SPACE 6
+#define TITLE_SPACE 250
+#define GENRE_SPACE 50
+#define NUM_SPACE 10
 
 typedef struct Movie
 {

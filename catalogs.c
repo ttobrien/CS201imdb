@@ -8,18 +8,27 @@
 char* EditCatalog()
 {
     char* name;
-    name = (char *)malloc(NAME_LEN * sizeof(char));
+    name = (char *)malloc(FILENAME_LEN * sizeof(char));
+
+    char input[INPUT_LEN];
     bool exists = false;
     while(!exists)
     {
-        printf("What is the name of the catalog would you like to edit: ");
-        scanf("%s", name);
+        printf("\nWhat is the name of the catalog would you like to edit: ");
+        scanf(" %250[^\n]", input);
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+            exit(1);
+        }
+        strncpy(name, input, FILENAME_LEN);
         FILE* catalogName = NULL;
         catalogName = fopen(name, "r");
         if (catalogName == NULL)
             printf("%s does not exist. Try again.\n", name);
         else
             exists = true;
+        fclose(catalogName);
     }
     return name;
 }
@@ -28,6 +37,11 @@ char* EditCatalog()
 char* ConvertToKey(char* title)
 {
     int len = strlen(title);
+    if((len + 2) >= TITLE_SPACE)
+    {
+        printf("\nERROR: while converting the entered title into its key the maximum length would have been exceeded.\nProgram closing. Current data for the current catalog might have been lost.\n");
+        exit(1);
+    }
     char* temp;
     char* key;
     temp = (char *)malloc((len+1)*sizeof(char));
@@ -107,33 +121,33 @@ Movie* LoadCatalog(char* name)
     return catalogTree;
 }
 
-Movie* SelectMovie(Movie *database)
+Movie* SelectMovie(Movie *database) //strncpy and strncmp
 {
     char* titleKey;
     char title[TITLE_SPACE];
+    char input[INPUT_LEN];
     printf("Enter name of movie that you would like to add to your catalog: ");
-    scanf(" %[^\n]", title);
-    //fgets(title, TITLE_SPACE, stdin);
-    //strcpy(title, DeleteNewlineCharAtEnd(title));
+    scanf(" %250[^\n]", input);
+    if(strlen(input) == INPUT_LEN)
+    {
+        printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+        exit(1);
+    }
+    strcpy(title, input);
     titleKey = ConvertToKey(title);
     int len = strlen(titleKey);
+    printf("\nThe following movie(s) fully match or start with the entered string:\n");
     SearchForMovie(database, titleKey, len);
-    printf("Enter full title of movie from above list: ");
-    scanf(" %[^\n]", title);
+    printf("\nEnter full title of movie exactly as it appears in the list above: ");
+    scanf(" %250[^\n]", input);
+    if(strlen(input) == INPUT_LEN)
+    {
+        printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+        exit(1);
+    }
+    strcpy(title, input);
     strcpy(titleKey, ConvertToKey(title));
-    printf("The key for whatt you entered: (%s)\n", titleKey);
-    //fgets(title, TITLE_SPACE, stdin);
-    //strcpy(title, DeleteNewlineCharAtEnd(title));
     return GetMovie(database, titleKey);
-    //return GetMovie(database, ConvertToKey(title));
-
-}
-
-char* DeleteNewlineCharAtEnd(char *str)
-{
-    int len = strlen(str);
-    str[len-1] = '\0';
-    return str;
 }
 
 Movie* GetMovie(Movie *database, char *movieTitle)
@@ -154,13 +168,12 @@ Movie* GetMovie(Movie *database, char *movieTitle)
 
 }
 
-Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work on first try
+Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work on first try    backspacing and oversized input
 {
     Movie* movieToInsert = SelectMovie(database);
     if(movieToInsert == NULL)
     {
-        printf("No movies found containing the entered string.\n");
-        //printf("Note that movies beginning with: \"A\", \"Le\", \"The\", have had those substrings appended to the end of the title with a comma.");
+        printf("\nNo movies found containing the entered string. Nothing added to catalog\n");
         return catalogTree;
     }
     catalogTree = Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
@@ -174,11 +187,11 @@ void PrintOneMovie(Movie *catalogTree, char *movieKey)
 {
     if(catalogTree == NULL)
     {
-        printf("Movie not found.\n");
+        printf("\nMovie not found.\n");
         return;
     }
 
-    else if(strcmp(catalogTree->key, movieKey) == 0) //else if(strcmp(database->key, movieTitle) == 0)
+    else if(strcmp(catalogTree->key, movieKey) == 0)
     {
         printf("\nMovie: %s\nGenre(s): %s\nRelease Year: %s\nRuntime: %s minutes\nMedia Type: %s\nDate Acquired: %s\n\n", catalogTree->title, catalogTree->genre, catalogTree->year, catalogTree->time, catalogTree->media, catalogTree->date);
 

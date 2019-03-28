@@ -7,7 +7,7 @@
 #include "avlTree.h"
 #include "catalogs.h"
 
-Movie* StartUp()
+Movie* StartUp() //Displays
 {
     printf("\n\nWelcome to the IMDb Movie Catalog!\n\n");
     printf("Initializing database. Please wait.\n");
@@ -22,7 +22,7 @@ int MainMenu()
 {
     bool loop = false;
     int choice, digit;
-    char input[200];
+    char input[250];
 
     printf("\nWould you like to:\n");
     printf("(1) Create a new catalog\n");
@@ -32,7 +32,12 @@ int MainMenu()
     while(! loop)
     {
         printf("\nEnter number of choice: ");
-        scanf("%s", input);
+        scanf(" %250[^\n]", input);
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            exit(1);
+        }
         digit = CheckInputIsDigit(input);
         if(digit != -1)
         {
@@ -48,7 +53,7 @@ bool CheckValidInput(int lower, int upper, int num)
     bool valid;
     if( (num < lower) || (num > upper) )
     {
-        printf("Error: Enter a number %d through %d.\n", lower, upper);
+        printf("ERROR: Enter a number %d through %d.\n", lower, upper);
         valid = false;
     }
     else
@@ -80,7 +85,7 @@ void UseCatalogMenu(Movie* database, char* name)
     int choice, digit;
     bool loop;
     bool editing = true;
-    char input[200];
+    char input[INPUT_LEN];
     Movie *catalogTree = LoadCatalog(name);
     char titleToUse[TITLE_SPACE];
 
@@ -88,7 +93,7 @@ void UseCatalogMenu(Movie* database, char* name)
         loop = false;
         while (!loop) {
             printf("\nSelect what you would like to do with catalog %s:\n", name);
-            printf("(1) Add/Create a movie\n");
+            printf("(1) Add a movie\n");
             printf("(2) Remove a movie\n");
             printf("(3) Update a movie's media type\n");
             printf("(4) Update a movie's date of acquisition\n");
@@ -96,7 +101,28 @@ void UseCatalogMenu(Movie* database, char* name)
             printf("(6) View all titles\n");
             printf("(7) Return to main menu\n");
             printf("Enter number of choice: ");
-            scanf("%s", input);
+            scanf(" %250[^\n]", input);
+
+            if(strlen(input) == INPUT_LEN)
+            {
+                FILE* writeFile = NULL;
+                writeFile = fopen(name, "w");
+
+                if(catalogTree == NULL)
+                {
+                    fprintf(writeFile, "0\n");
+                }
+                else
+                {
+                    fprintf(writeFile, "1\n");
+                    PrintNodeToFile(catalogTree, writeFile);
+                }
+
+                fclose(writeFile);
+                printf("\nEntered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
+                exit(1);
+            }
+
             digit = CheckInputIsDigit(input);
             if(digit != -1)
             {
@@ -110,23 +136,19 @@ void UseCatalogMenu(Movie* database, char* name)
                 catalogTree = InsertToCatalog(database, catalogTree);
                 break;
             case 2:
-                printf("\nEnter full exact title of movie to be deleted: ");
-                scanf(" %[^\n]", titleToUse);
+                strcpy(titleToUse, GetTitleToUse(catalogTree, name, "deleted"));
                 catalogTree = Remove(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 3:
-                printf("\nEnter full exact title of movie to be updated: ");
-                scanf(" %[^\n]", titleToUse);
+                strcpy(titleToUse, GetTitleToUse(catalogTree, name, "updated"));
                 catalogTree = InitializeMediaTypeMenu(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 4:
-                printf("\nEnter full exact title of movie to be updated: ");
-                scanf(" %[^\n]", titleToUse);
+                strcpy(titleToUse, GetTitleToUse(catalogTree, name, "updated"));
                 catalogTree = InitializeDateMenu(catalogTree, ConvertToKey(titleToUse)); //had issue with A Day Without Lies after changing media type
                 break;
             case 5:
-                printf("\nEnter full exact title of movie to be view: ");
-                scanf(" %[^\n]", titleToUse);
+                strcpy(titleToUse, GetTitleToUse(catalogTree, name, "viewed"));
                 PrintOneMovie(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 6:
@@ -145,7 +167,6 @@ void UseCatalogMenu(Movie* database, char* name)
     if(catalogTree == NULL)
     {
         fprintf(writeFile, "0\n");
-        //printf("\nNOTICE: No movies left in this catalog, so it will be deleted. You can make a new catalog of the same name.");
     }
     else
     {
@@ -158,11 +179,44 @@ void UseCatalogMenu(Movie* database, char* name)
     return;
 }
 
+char *GetTitleToUse(Movie* catalogTree, char* catalogName, char* action)
+{
+    char *input;
+    input = (char *)malloc(INPUT_LEN * sizeof(char));
+
+    printf("\nEnter full exact title of movie to be %s: ", action);
+
+    scanf(" %250[^\n]", input);
+
+    if(strlen(input) == INPUT_LEN)
+    {
+        FILE* writeFile = NULL;
+        writeFile = fopen(catalogName, "w");
+
+        if(catalogTree == NULL)
+        {
+            fprintf(writeFile, "0\n");
+        }
+        else
+        {
+            fprintf(writeFile, "1\n");
+            PrintNodeToFile(catalogTree, writeFile);
+        }
+
+        fclose(writeFile);
+        printf("\nEntered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
+        exit(1);
+    }
+
+    return input;
+}
+
 Movie *InitializeMediaTypeMenu(Movie *catalogTree, char *name)
 {
-    char input[200];
+    char input[INPUT_LEN];
     bool loop = false;
-    int digit, choice;
+    int digit;
+    int choice = 0;
 
     printf("Choose the media type of the movie\n");
     printf("(1) dvd\n");
@@ -171,13 +225,22 @@ Movie *InitializeMediaTypeMenu(Movie *catalogTree, char *name)
     while(! loop)
     {
         printf("Enter number of choice: ");
-        scanf("%s", input);
+        scanf(" %250[^\n]", input);
+
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nFATAL ERROR: Entered amount of characters exceeds limit. Program closing. Catalog data may be lost.\n");
+            exit(1);
+        }
+
         digit = CheckInputIsDigit(input);
-        if (digit != -1) {
+        if (digit != -1)
+        {
             choice = digit;
             loop = CheckValidInput(1, 3, choice);
         }
     }
+
     if(choice == 1)
         catalogTree = UpdateMediaType(catalogTree, name, "dvd");
     else if(choice == 2)
@@ -190,15 +253,20 @@ Movie *InitializeMediaTypeMenu(Movie *catalogTree, char *name)
 
 Movie *InitializeDateMenu(Movie *catalogTree, char *name)
 {
-    char input[200];
+    char input[INPUT_LEN];
     bool loop = false;
-    int len;
+
     while(! loop)
     {
         printf("Enter date that the movie was acquired in form of MM/DD/YYYY: ");
-        scanf("%s", input);
-        len = strlen(input);
-        if(len == 10)
+        scanf(" %250[^\n]", input);
+
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nFATAL ERROR: Entered amount of characters exceeds limit. Program closing. Catalog data may be lost.\n");
+            exit(1);
+        }
+        else if(strlen(input) == 10)
         {
             loop = true;
         }

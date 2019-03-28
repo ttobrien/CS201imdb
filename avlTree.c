@@ -161,10 +161,13 @@ Movie* Remove(Movie *avl, char *name)
                         avl = LR(avl);
                     }
                 }
+                free(temp);
             }
             else
             {
-                return avl->left;
+                temp = avl->left;
+                free(avl);
+                return temp;
             }
         }
     }

@@ -19,7 +19,5 @@ void PrintAll(Movie *);
 void PrintNodeToFile(Movie *, FILE *);
 void PrintOneMovie(Movie *, char *);
 
-//char* DeleteNewlineCharAtEnd(char *);
-
 
 #endif //CS201IMDB_CATALOGS_H

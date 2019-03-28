@@ -9,96 +9,114 @@
 
 
 
+
 void NewCatalog(Movie *database)
 {
-    char name[NAME_LEN];
+    char name[FILENAME_LEN];
+    char input[INPUT_LEN];
     bool exists = true;
-    //char existingName[NAME_LEN];
-    //int nameCount;
-    //int nameMatch;
+    int inLen;
+    char extention[10];
+    bool match = true;
+    int count = 0;
+    int spaces = 0;
 
     while(exists)
     {
-        //nameCount = 0;
-        //nameMatch = 0;
-
         printf("\nWhat would you like to name this catalog? ");
-        scanf("%s", name);
+        scanf(" %250[^\n]", input);
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            exit(1);
+        }
+        else
+        {
+
+            inLen = strlen(input);
+            strcpy(extention, ".txt");
+
+            if(inLen < 5)
+            {
+                printf("\nERROR: file name should be at least 5 characters long because of the file's name and the .txt extension\n");
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+
+            if(inLen > FILENAME_LEN)
+            {
+                printf("\nERROR: file name cannot be more than %d characters long\n", FILENAME_LEN);
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+
+            if(! isalpha(input[0]))
+            {
+                printf("\nERROR: file name should start with an english letter\n");
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+
+            for(int i = 0; i < 4; i++)
+            {
+                if(extention[i] != input[inLen-4+1])
+                {
+                    match = false;
+                }
+            }
+            if(! match)
+            {
+                printf("\nERROR: file name should end in \".txt\"\n");
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+
+            for(int j = 0; j < inLen; j++)
+            {
+                if(input[j] == '.')
+                {
+                    count++;
+                }
+
+                if(input[j] == ' ')
+                {
+                    spaces++;
+                }
+            }
+            if(count != 1)
+            {
+                printf("\nERROR: file name should contain exactly 1 period\n");
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+            if(spaces != 0)
+            {
+                printf("\nERROR: file name should contain 0 spaces\n");
+                printf("Returning to main menu. Please try again.\n");
+                return;
+            }
+
+
+            strncpy(name, input, FILENAME_LEN);
+
+
+        }
 	
-	FILE* newFile = NULL;
-	newFile = fopen(name, "r");
-	if(newFile != NULL)
-	{
-		printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
-	}
-	else
-	{
-		exists = false;
-	}
-    }
-
-
-        /*FILE *namesFile = NULL;
-        namesFile = fopen("CatalogNames", "r");
-        if(namesFile == NULL)
+        FILE* newFile = NULL;
+        newFile = fopen(name, "r");
+        if(newFile != NULL)
+        {
+            printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
+        }
+        else
         {
             exists = false;
         }
-        else
-        {
-            while( ! feof(namesFile) )
-            {
-                nameCount++;
-                fscanf(namesFile, "%s\n", existingName);
-                if(strcmp(existingName, name) == 0)
-                {
-                    nameMatch++;
-                }
-            }
-            if(nameMatch == 0)
-            {
-                exists = false;
-            }
-        }
-        fclose(namesFile);
-
-        if(exists)
-        {
-            printf("\nError: %s is the name of an existing catalog. Please choose a different name.\n", name);
-        }
-        else
-        {
-
-            if(nameCount == 0)
-            {
-                namesFile = fopen("CatalogNames", "w");
-                fprintf(namesFile, "%s\n", name);
-                fclose(namesFile);
-            }
-            else
-            {
-                namesFile = fopen("CatalogNames", "r");
-                char nameList[nameCount + 1][NAME_LEN];
-                for(int i = 0; i < nameCount; i++)
-                {
-                    fscanf(namesFile, "%s\n", nameList[i]);
-                }
-                strcpy(nameList[nameCount], name);
-                fclose(namesFile);
-
-                namesFile = fopen("CatalogNames", "w");
-                for(int i = 0; i <=nameCount; i++)
-                {
-                    fprintf(namesFile, "%s\n", nameList[i]);
-                }
-                fclose(namesFile);
-            }
-        }
-    }*/
+        fclose(newFile);
+    }
 
 
-
-    printf("You will now add the first movie to your new catalog.\n");
+    printf("\nYou will now add the first movie to your new catalog.\n");
     FILE* newfile = NULL;
     newfile = fopen(name, "w");
 
@@ -114,6 +132,7 @@ void NewCatalog(Movie *database)
     fclose(newfile);
 
     int nextStep;
+    int digit;
     bool loop = false;
 
 
@@ -122,14 +141,23 @@ void NewCatalog(Movie *database)
     while(! loop)
     {
         printf("\nEnter number of choice: ");
-        scanf("%d", &nextStep);
-        loop = CheckValidInput(1, 2, nextStep);
+        scanf(" %250[^\n]", input);
+        if(strlen(input) == INPUT_LEN)
+        {
+            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            exit(1);
+        }
+        digit = CheckInputIsDigit(input);
+        if(digit != -1)
+        {
+            nextStep = digit;
+            loop = CheckValidInput(1, 2, nextStep);
+        }
     }
     if(nextStep == 1)
         UseCatalogMenu(database, name);
-    else
-        //MainMenu
-    return;
+
+    return; // returns to Main Menu
 }
 
 

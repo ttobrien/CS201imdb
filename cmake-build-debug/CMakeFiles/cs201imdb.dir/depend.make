@@ -33,4 +33,3 @@ CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../libraries.h
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.c
 CMakeFiles/cs201imdb.dir/newCatalog.c.o: ../newCatalog.h
 
-

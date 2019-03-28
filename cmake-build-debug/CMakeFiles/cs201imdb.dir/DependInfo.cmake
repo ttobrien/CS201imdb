@@ -9,7 +9,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/display.c" "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/cs201imdb.dir/display.c.o"
   "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/main.c" "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/cs201imdb.dir/main.c.o"
   "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/newCatalog.c" "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/cs201imdb.dir/newCatalog.c.o"
-  "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/testing.c" "/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/cs201imdb.dir/testing.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

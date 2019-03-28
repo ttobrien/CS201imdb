@@ -15,5 +15,6 @@ void UseCatalogMenu(Movie*, char*);
 int CheckInputIsDigit(char *);
 Movie *InitializeMediaTypeMenu(Movie *, char *);
 Movie *InitializeDateMenu(Movie *, char *);
+char *GetTitleToUse(Movie *, char *, char *);
 
 #endif //CS201IMDB_DISPLAY_H
