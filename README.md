@@ -20,7 +20,7 @@ If the user has correctly added title.basics.tsv to the folder then the main men
     (3) Close program
     
 Option 1 takes the user through the process of creating a new catalog. 
-First the user has to specify the name of the catalog. This name must be unique (not the exact name of a preexisting catalog). Once the user has picked a picked a name for their new catalog, he or she is then forced to add a movie to the catalog. A the end of this process the user can choose to continue editing the same catalog or return to main menu.
+First the user has to specify the name of the catalog. This name must be unique (not the exact name of a preexisting catalog), starts with an english letter, and has the extension of ".txt". Once the user has picked a picked a name for their new catalog, he or she is then forced to add a movie to the catalog. A the end of this process the user can choose to continue editing the same catalog or return to main menu.
 
 
 Option 2 allows the user to perform several different functions on an existing catalog.
