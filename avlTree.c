@@ -8,7 +8,7 @@
 Movie* LoadDatabase()
 {
     FILE *titleBasics = NULL;
-    titleBasics = fopen("data.tsv", "r");
+    titleBasics = fopen("title.basics.tsv", "r");
 
     if(titleBasics == NULL)
     {
@@ -134,6 +134,7 @@ Movie* Remove(Movie *avl, char *name)
         }
         else
         {
+            printf("\nMovie deleted successfully.\n");
             if(avl->right != NULL)
             {
                 temp = avl->right;
@@ -181,7 +182,7 @@ Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
 
     if(avl == NULL)
     {
-        printf("ERROR: Movie not found. Media type not added.\n");
+        printf("\nERROR: Movie not found. Media type not added.\n");
         return NULL;
     }
 
@@ -190,6 +191,7 @@ Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
         if(strcmp(nameKey, avl->key) == 0)
         {
             strcpy(avl->media, mediaType);
+            printf("\nMedia type updated successfully.\n");
             return avl;
         }
         else if(strcmp(nameKey, avl->key) > 0)
@@ -209,7 +211,7 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
 
     if(avl == NULL)
     {
-        printf("ERROR: Movie not found. Date of acquisition not added.\n");
+        printf("\nERROR: Movie not found. Date of acquisition not added.\n");
         return NULL;
     }
 
@@ -218,6 +220,7 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
         if(strcmp(nameKey, avl->key) == 0)
         {
             strcpy(avl->date, dateAcquired);
+            printf("\nDate of acquisition updated successfully.\n");
             return avl;
         }
         else if(strcmp(nameKey, avl->key) > 0)

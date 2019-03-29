@@ -99,15 +99,12 @@ void NewCatalog(Movie *database)
                 return;
             }
 
-            printf("before\n");
             strncpy(name, input, FILENAME_LEN);
-            printf("after\n");
 
         }
 
         FILE* newFile = NULL;
         newFile = fopen(name, "r");
-        printf("opened\n");
         if(newFile != NULL)
         {
             printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
@@ -117,9 +114,7 @@ void NewCatalog(Movie *database)
         {
             exists = false;
         }
-        printf("howdy\n");
 
-        printf("closed\n");
     }
 
 

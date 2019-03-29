@@ -153,7 +153,10 @@ void UseCatalogMenu(Movie* database, char* name)
                 break;
             case 6:
                 printf("\n");
-                PrintAll(catalogTree);
+                if (catalogTree == NULL)
+                    printf("This catalog contains 0 movies at the moment");
+                else
+                    PrintAll(catalogTree);
                 break;
             case 7:
             default:

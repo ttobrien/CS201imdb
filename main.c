@@ -12,6 +12,7 @@ int main(void)//convince her of good choices, data structures, and testing. USE 
               //convert to key needs to be fixed
               //fclose on NULL
               //string ops on pointers
+              //add not about not typing continuously (clicking or keying left)
 
     Movie *tree = StartUp(); //Does introductory output and creates and stores the avl Tree from the IMDb data file
 

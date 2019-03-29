@@ -106,7 +106,6 @@ char* ConvertToKey(char* title)
         temp[len] = '\0';
         return temp;
     }
-    printf("returning\n");
     return key;
 }
 
@@ -199,6 +198,7 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work 
     catalogTree = Insert(catalogTree, movieToInsert->key, movieToInsert->title, movieToInsert->genre, movieToInsert->year, movieToInsert->time);
     catalogTree = InitializeMediaTypeMenu(catalogTree, movieToInsert->key);
     catalogTree = InitializeDateMenu(catalogTree, movieToInsert->key);
+    printf("\nMovie successfully added.\n");
     return catalogTree;
 
 }
