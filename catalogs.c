@@ -50,7 +50,6 @@ char* ConvertToKey(char* title)
     char* key;
     temp = (char *)malloc((len+1)*sizeof(char));
     key = (char *)malloc((len+2)*sizeof(char));
-    printf("malloced\n");
 
     for(int i = 0; i < len; i++)
     {
@@ -71,8 +70,6 @@ char* ConvertToKey(char* title)
         key[len-1] = 'h';
         key[len] = 'e';
         key[len+1] = '\0';
-
-          printf("for loop done\n");
     }
 
 
@@ -83,7 +80,10 @@ char* ConvertToKey(char* title)
             key[i-2] = temp[i];
         }
 
-        strcat(key, ", a\0");
+        key[len-2] = ',';
+        key[len-1] = ' ';
+        key[len] = 'a';
+        key[len+1] = '\0';
     }
 
     else if(strncmp(temp, "and ", 4) == 0)
@@ -93,7 +93,12 @@ char* ConvertToKey(char* title)
             key[i-4] = temp[i];
         }
 
-        strcat(key, ", and\0");
+        key[len-4] = ',';
+        key[len-3] = ' ';
+        key[len-2] = 'a';
+        key[len-1] = 'n';
+        key[len] = 'd';
+        key[len+1] = '\0';
     }
 
     else
@@ -150,13 +155,11 @@ Movie* SelectMovie(Movie *database) //strncpy and strncmp
     }
     strcpy(title1, input1);
     titleKey1 = ConvertToKey(title1);
-    printf("key = (%s)\n", titleKey1);
     int len = strlen(titleKey1);
     printf("\nThe following movie(s) fully match or start with the entered string:\n");
     SearchForMovie(database, titleKey1, len);
     printf("\nEnter full title of movie exactly as it appears in the list above: ");
     scanf(" %250[^\n]", input2);
-    printf("in 2 =(%s)\n", input2);
     if(strlen(input2) == INPUT_LEN)
     {
         printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
@@ -164,8 +167,6 @@ Movie* SelectMovie(Movie *database) //strncpy and strncmp
     }
     strcpy(title2, input2);
     titleKey2 = ConvertToKey(title2);
-    printf("key = (%s)\n", titleKey2);
-    printf("Copied\n");
     return GetMovie(database, titleKey2);
 }
 
@@ -204,7 +205,6 @@ Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work 
 
 void PrintOneMovie(Movie *catalogTree, char *movieKey)
 {
-  printf("called\n");
     if(catalogTree == NULL)
     {
         printf("\nMovie not found.\n");
