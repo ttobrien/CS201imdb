@@ -33,7 +33,7 @@ First the user has to specify the name of an existing catalog that he or she wou
     (4) Update a movie's date of acquisition
     (5) View a movie
     (6) View all titles
-    (7) Return to main menu
+    (7) Save catalog and return to main menu
     Enter number of choice:
 
 Option 2.1 allows the user to create a new movie entry into the catalog.

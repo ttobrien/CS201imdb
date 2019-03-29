@@ -5,7 +5,8 @@
 #include "avlTree.h"
 
 
-int main(void)//convince her of good choices, data structures, and testing. USE STRNCMP AND STRNCPY use char * to read in input and then strncpy and %200s, bigger title space, can crash if run out of heap
+int main(void)//convince her of good choices, data structures, and testing.
+// USE STRNCMP AND STRNCPY use char * to read in input and then strncpy and %200s, bigger title space, can crash if run out of heap
 {             // before exit(1) try to save catalog?
               // read in single strings as whole input [^\n] and then extract the first part until space
               //free space of Movie after deleted
@@ -13,6 +14,8 @@ int main(void)//convince her of good choices, data structures, and testing. USE 
               //fclose on NULL
               //string ops on pointers
               //add not about not typing continuously (clicking or keying left)
+              //update readme about date can be any 10 chars
+              //update readme about how when too many chars program closes and then several commands will execute from the bad input
 
     Movie *tree = StartUp(); //Does introductory output and creates and stores the avl Tree from the IMDb data file
 
@@ -34,8 +37,8 @@ int main(void)//convince her of good choices, data structures, and testing. USE 
             case 2 :    //Takes user to state where they can perform different operations on an existing catalog
                 UseCatalogMenu(tree, EditCatalog());
                 break;
-            case 3 :    //printd closing message and shuts down program
-            default:    //put in default with termination just to be safe
+            case 3 :    //prints closing message and shuts down program
+            default:    //put in default to termination just to be safe
                 printf("\nProgram closing.\nThank you for using the IMDb Movie Catalog!\nGoodbye.\n\n");
                 return 0;
 

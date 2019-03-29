@@ -97,7 +97,7 @@ Movie* Remove(Movie *avl, char *name)
 
     if(avl == NULL)
     {
-        printf("Title not found. Movie not removed. Before trying again, view all movies in your catalog with option 6.\n");
+        printf("\nTitle not found. Movie not removed. Before trying again, view all movies in your catalog with option 6.\n");
         return NULL;
     }
     else
@@ -233,24 +233,6 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
         }
     }
     return avl;
-}
-
-void PrintInOrder(Movie *tree)
-{
-    if(tree == NULL)
-        return;
-    PrintInOrder(tree->left);
-    printf("%s\n", tree->key);
-    PrintInOrder(tree->right);
-}
-
-void PrintPreOrder(Movie* tree)
-{
-    if(tree == NULL)
-        return;
-    printf("%s\n", tree->key);
-    PrintPreOrder(tree->left);
-    PrintPreOrder(tree->right);
 }
 
 int height(Movie *avl)

@@ -7,6 +7,7 @@
 #include "avlTree.h"
 #include "catalogs.h"
 
+
 Movie* StartUp() //Displays
 {
     printf("\n\nWelcome to the IMDb Movie Catalog!\n\n");
