@@ -23,6 +23,9 @@ void NewCatalog(Movie *database)
 
     while(exists)
     {
+        spaces = 0;
+        count = 0;
+        
         printf("\nWhat would you like to name this catalog? ");
         scanf(" %250[^\n]", input);
         if(strlen(input) == INPUT_LEN)
@@ -59,7 +62,7 @@ void NewCatalog(Movie *database)
 
             for(int i = 0; i < 4; i++)
             {
-                if(extention[i] != input[inLen-4+1])
+                if(extention[i] != input[inLen-4+i])
                 {
                     match = false;
                 }
@@ -96,23 +99,27 @@ void NewCatalog(Movie *database)
                 return;
             }
 
-
+            printf("before\n");
             strncpy(name, input, FILENAME_LEN);
-
+            printf("after\n");
 
         }
-	
+
         FILE* newFile = NULL;
         newFile = fopen(name, "r");
+        printf("opened\n");
         if(newFile != NULL)
         {
             printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
+            fclose(newFile);
         }
         else
         {
             exists = false;
         }
-        fclose(newFile);
+        printf("howdy\n");
+
+        printf("closed\n");
     }
 
 
@@ -159,5 +166,3 @@ void NewCatalog(Movie *database)
 
     return; // returns to Main Menu
 }
-
-

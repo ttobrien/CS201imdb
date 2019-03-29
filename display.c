@@ -99,7 +99,7 @@ void UseCatalogMenu(Movie* database, char* name)
             printf("(4) Update a movie's date of acquisition\n");
             printf("(5) View a movie\n");
             printf("(6) View all titles\n");
-            printf("(7) Return to main menu\n");
+            printf("(7) Save catalog and return to main menu\n");
             printf("Enter number of choice: ");
             scanf(" %250[^\n]", input);
 
@@ -152,6 +152,7 @@ void UseCatalogMenu(Movie* database, char* name)
                 PrintOneMovie(catalogTree, ConvertToKey(titleToUse));
                 break;
             case 6:
+                printf("\n");
                 PrintAll(catalogTree);
                 break;
             case 7:
@@ -279,4 +280,3 @@ Movie *InitializeDateMenu(Movie *catalogTree, char *name)
     return catalogTree;
 
 }
-

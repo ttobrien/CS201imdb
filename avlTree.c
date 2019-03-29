@@ -8,7 +8,7 @@
 Movie* LoadDatabase()
 {
     FILE *titleBasics = NULL;
-    titleBasics = fopen("title.basics.tsv", "r");
+    titleBasics = fopen("data.tsv", "r");
 
     if(titleBasics == NULL)
     {
@@ -355,12 +355,3 @@ void SearchForMovie(Movie* database, char* titleKey, int keyLen)
     else
         SearchForMovie(database->left, titleKey, keyLen);
 }
-
-
-
-
-
-
-
-
-

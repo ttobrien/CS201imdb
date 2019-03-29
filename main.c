@@ -9,6 +9,9 @@ int main(void)//convince her of good choices, data structures, and testing. USE 
 {             // before exit(1) try to save catalog?
               // read in single strings as whole input [^\n] and then extract the first part until space
               //free space of Movie after deleted
+              //convert to key needs to be fixed
+              //fclose on NULL
+              //string ops on pointers
 
     Movie *tree = StartUp(); //Does introductory output and creates and stores the avl Tree from the IMDb data file
 
