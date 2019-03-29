@@ -16,6 +16,8 @@ int main(void)//convince her of good choices, data structures, and testing.
               //add not about not typing continuously (clicking or keying left)
               //update readme about date can be any 10 chars
               //update readme about how when too many chars program closes and then several commands will execute from the bad input
+              // if error message not displayed on updates then it was successful
+
 
     Movie *tree = StartUp(); //Does introductory output and creates and stores the avl Tree from the IMDb data file
 

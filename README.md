@@ -32,7 +32,7 @@ First the user has to specify the name of an existing catalog that he or she wou
     (3) Update a movie's media type
     (4) Update a movie's date of acquisition
     (5) View a movie
-    (6) View all titles
+    (6) View all info for all movies in the catalog
     (7) Save catalog and return to main menu
     Enter number of choice:
 
@@ -44,16 +44,16 @@ The user is prompted to enter a partial or full movie title (IMPORTANT NOTE: If 
     (2) bluray
     (3) digital
     Enter number of choice:
-Then the user is prompted to enter the date that the movie was acquired. Date should be entered in the form of MM/DD/YYYY. Finally, the user is brought back to the movie menu with the just added movie as a part of the catalog in use. 
+Then the user is prompted to enter the date that the movie was acquired. Date should be entered in the form of MM/DD/YYYY. Finally, the user is brought back to the movie menu with the just added movie as a part of the catalog in use.
 
 Option 2.2 allows the user to delete an existing movie from the catalog.
 First the user is prompted to enter the full exact movie title. Once the title is entered, the program removes it from the catalog in use and returns the user to the movie menu.
 
 Option 2.3 allows the user to update the media type of an existing movie in the catalog.
-First the user is prompted to enter the full exact movie title. Then the user is prompted to pick a media type from the media menu. The movie is then updated to contain the newly selected media type. Finally, the user is brought back to the movie menu.
+First the user is prompted to enter the full exact movie title. Then the user is prompted to pick a media type from the media menu. The movie is then updated to contain the newly selected media type. If no error message is printed then the update was successful. Finally, the user is brought back to the movie menu.
 
 Option 2.4 allows the user to update the date of acquisition for an existing movie in the catalog.
-First the user is prompted to enter the full exact movie title. Then the user is prompted to enter the new date in the form of MM/DD/YYYY. The movie is then updated to contain the newly entered date of acquisition. Finally, the user is brought back to the movie menu.
+First the user is prompted to enter the full exact movie title. Then the user is prompted to enter the new date in the form of MM/DD/YYYY. The movie is then updated to contain the newly entered date of acquisition. If no error message is printed then the update was successful.  Finally, the user is brought back to the movie menu.
 
 Option 2.5 allows the user to print all stored information for an existing movie in the catalog.
 First the user is prompted to enter the full exact movie title. The information for that movie is then displayed in the following format: 
@@ -83,29 +83,39 @@ The following is printed to the screen:
 The program stops operation. The user is then brought back to regular terminal mode.
 
 
-## Assumptions Made:
-
-
-
 ## Usage:
-To use this program, download the code as a zip file from github
-After unzipping the file, add title.basics.tsv to that folder
-title.basics.tsv can be found at ADD THE LINK
+Follow the steps below to get the program up and running.
+Download the code as a zip file from github
+Unzip the file to an empty folder.
+Go to https://datasets.imdbws.com/
+Download the file title.basics.tsv.gz
+Unzip the file and add title.basics.tsv to the folder that the code is in
 This program is intended to work on Ubuntu 18.04 LTS (Bionic Beaver)
-There is a makefile included in the project folder, so while in the project folder in the TERMINAL??? type
+There is a makefile included in the project folder, so while in the project folder in the terminal type
 
         make
 The project will then have been compiled into an executable called "imdb", so to start the program type
 
         ./imdb
 
-Program execution will only stop in 3 scenarios
+
+Program execution will only stop in 3 scenarios:
 1 - the user chooses Option 3 from the main menu,
-2 - the program is stopped from the outside (closing window, shutting off the computer, CORRECT FOR LINUX??cntrl+c, etc...), or
-3 - the user enters input greater than or equal to (250) characters.
-***Program will exit without saving if you enter (250) or more characters at any input prompt, so dont do it because it is not necessary. 
+2 - the program is stopped from the outside (closing window, shutting off the computer, ctrl+c, etc...), or
+3 - the user enters input greater than or equal to 250 characters.
+***Program will exit without saving if you enter 250 or more characters at any input prompt, so dont do it because it is not necessary.
 
+Important notes:
+-The file exit.txt is included in the project folder so that if a user tries to edit an existing catalog without ever having created a catalog then he or she can type
 
+        exit.txt
+and then choose option 7 in the movie menu to return to the main menu and create a new catalog.
+***never remove exit.txt from the project folder
+
+-When doing the intial search for a movie to add, exclude "The", "And", or "A" if that is what the first word of the title is unless you are typing the full exact title. Movies that have at least the first two words being a combination from the three articles can only be found in a search wih the Full exact movie title.
+-If the user enters a valid full exact movie title of a movie not in the printed list from the inital search, that movie will still be added to the catalog.
+-When entering date of acquisition for a movie the form MM/DD/YYYY is specified, but anything that is 10 characters long is actually acceptable. Just by saying MM/DD/YYYY it makes it clear form the form of the date, but if the user wants to put some random 10 character string, I am okay with that because it is their catalog and they can update it to a real date later if they choose to do so.
+-When 250 or more characters are entered at input, the program may or may not save the working catalog depending on the current state. Also when this error occurs and the program exits, the input will most likely be tried as terminal commands.
 
 
 ## Choices Made:
@@ -117,3 +127,9 @@ Program execution will only stop in 3 scenarios
 1. After a few days of research, I concluded that an AVL Tree was the best data structure for me to use on this project. There were several motivating factors driving that choice. Firstly, an AVL Tree performs insertions, deletions, and searches in O(lg n) time. Also I have studied and coded binary search trees and red-black trees, so I am quite comfortable with the concept of BSTs. However, I had no previous experience with AVL trees in particular. this project served as a good opprtunity to learn and implement how they function. It is also a better form of a self-balancing BST than a red-black tree because it is stricter in its balancing. An AVL tree ensures that from any given node its left and right subtrees will only have a height differntial of 1. Both the database and individual catalogs utilize the same AVL tree functions.
 
 2. Originally, I had allowed the user to view names of existing catalogs, but I decided it would be best to remove that functionality. The biggest reason for that choice is that it affected program storage and and running time negatively. view through task manager and command line, create extra data structure, now is O(1) time.
+
+
+
+Citations:
+1. All noted functions in the code were modified from Neeraj Mishra's "Program for AVL Tree in C"
+    https://www.thecrazyprogrammer.com/2014/03/c-program-for-avl-tree-implementation.html

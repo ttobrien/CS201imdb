@@ -187,7 +187,7 @@ Movie* GetMovie(Movie *database, char *movieTitle)
 
 }
 
-Movie* InsertToCatalog(Movie *database, Movie *catalogTree)//doesnt always work on first try    backspacing and oversized input
+Movie* InsertToCatalog(Movie *database, Movie *catalogTree)
 {
     Movie* movieToInsert = SelectMovie(database);
     if(movieToInsert == NULL)

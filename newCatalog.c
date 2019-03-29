@@ -139,7 +139,7 @@ void NewCatalog(Movie *database)
 
 
 
-    printf("\nFirst movie successfully added to your new catalog.\n\nWould you like to:\n(1) Continue with current catalog\n(2) Return to main menu\n");
+    printf("\n\nWould you like to:\n(1) Continue with current catalog\n(2) Return to main menu\n");
     while(! loop)
     {
         printf("\nEnter number of choice: ");

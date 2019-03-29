@@ -191,7 +191,6 @@ Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
         if(strcmp(nameKey, avl->key) == 0)
         {
             strcpy(avl->media, mediaType);
-            printf("\nMedia type updated successfully.\n");
             return avl;
         }
         else if(strcmp(nameKey, avl->key) > 0)
@@ -220,7 +219,6 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
         if(strcmp(nameKey, avl->key) == 0)
         {
             strcpy(avl->date, dateAcquired);
-            printf("\nDate of acquisition updated successfully.\n");
             return avl;
         }
         else if(strcmp(nameKey, avl->key) > 0)

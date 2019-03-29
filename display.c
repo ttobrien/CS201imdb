@@ -99,7 +99,7 @@ void UseCatalogMenu(Movie* database, char* name)
             printf("(3) Update a movie's media type\n");
             printf("(4) Update a movie's date of acquisition\n");
             printf("(5) View a movie\n");
-            printf("(6) View all titles\n");
+            printf("(6) View all info for all movies in the catalog\n");
             printf("(7) Save catalog and return to main menu\n");
             printf("Enter number of choice: ");
             scanf(" %250[^\n]", input);
@@ -155,7 +155,7 @@ void UseCatalogMenu(Movie* database, char* name)
             case 6:
                 printf("\n");
                 if (catalogTree == NULL)
-                    printf("This catalog contains 0 movies at the moment");
+                    printf("This catalog contains 0 movies at the moment\n");
                 else
                     PrintAll(catalogTree);
                 break;
