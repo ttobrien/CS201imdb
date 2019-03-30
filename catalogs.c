@@ -145,7 +145,7 @@ Movie* SelectMovie(Movie *database) //strncpy and strncmp
     char input1[INPUT_LEN];
     char title2[TITLE_SPACE];
     char input2[INPUT_LEN];
-    printf("Enter name of movie that you would like to add to your catalog: ");
+    printf("\nEnter name of movie that you would like to add to your catalog: ");
     scanf(" %250[^\n]", input1);
     if(strlen(input1) == INPUT_LEN)
     {

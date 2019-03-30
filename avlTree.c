@@ -134,7 +134,6 @@ Movie* Remove(Movie *avl, char *name)
         }
         else
         {
-            printf("\nMovie deleted successfully.\n");
             if(avl->right != NULL)
             {
                 temp = avl->right;
@@ -162,12 +161,10 @@ Movie* Remove(Movie *avl, char *name)
                         avl = LR(avl);
                     }
                 }
-                free(temp);
             }
             else
             {
                 temp = avl->left;
-                free(avl);
                 return temp;
             }
         }

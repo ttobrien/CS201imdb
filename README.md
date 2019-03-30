@@ -47,7 +47,7 @@ The user is prompted to enter a partial or full movie title (IMPORTANT NOTE: If 
 Then the user is prompted to enter the date that the movie was acquired. Date should be entered in the form of MM/DD/YYYY. Finally, the user is brought back to the movie menu with the just added movie as a part of the catalog in use.
 
 Option 2.2 allows the user to delete an existing movie from the catalog.
-First the user is prompted to enter the full exact movie title. Once the title is entered, the program removes it from the catalog in use and returns the user to the movie menu.
+First the user is prompted to enter the full exact movie title. Once the title is entered, the program removes it from the catalog in use. If no error message is printed then it was successfully removed. The user then returns the user to the movie menu.
 
 Option 2.3 allows the user to update the media type of an existing movie in the catalog.
 First the user is prompted to enter the full exact movie title. Then the user is prompted to pick a media type from the media menu. The movie is then updated to contain the newly selected media type. If no error message is printed then the update was successful. Finally, the user is brought back to the movie menu.
