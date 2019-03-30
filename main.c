@@ -1,3 +1,7 @@
+//
+// Created by Tommy O'Brien on 3/7/2019.
+//
+
 #include "libraries.h"
 #include "display.h"
 #include "newCatalog.h"
@@ -5,20 +9,8 @@
 #include "avlTree.h"
 
 
-int main(void)//convince her of good choices, data structures, and testing.
-// USE STRNCMP AND STRNCPY use char * to read in input and then strncpy and %200s, bigger title space, can crash if run out of heap
-{             // before exit(1) try to save catalog?
-              // read in single strings as whole input [^\n] and then extract the first part until space
-              //free space of Movie after deleted
-              //convert to key needs to be fixed
-              //fclose on NULL
-              //string ops on pointers
-              //add not about not typing continuously (clicking or keying left)
-              //update readme about date can be any 10 chars
-              //update readme about how when too many chars program closes and then several commands will execute from the bad input
-              // if error message not displayed on updates then it was successful
-
-
+int main(void)
+{
     Movie *tree = StartUp(); //Does introductory output and creates and stores the avl Tree from the IMDb data file
 
     if(tree == NULL) //Program closes if datafile is not found since there is not much a user could do without the database

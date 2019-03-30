@@ -1,5 +1,5 @@
 //
-// Created by tommy on 3/9/2019.
+// Created by Tommy O'Brien on 3/9/2019.
 //
 
 #ifndef CS201IMDB_AVLTREE_H
@@ -122,7 +122,7 @@ Movie* UpdateDate(Movie *, char *, char *);
 
 /*
  * In order, its parameters are: an AVL Tree of Movies, a partial movie title key that is being searched for, and the length
- * of the partial title. The entire AVL tree is searched with a pre-order traversal, and whenever the first whatever the
+ * of the partial title. The entire AVL tree is searched with a in-order traversal, and whenever the first whatever the
  * passed int is characters of a movie's key matches the partial key that was passed, the movie's title is printed to the screen.
  */
 void SearchForMovie(Movie *, char *, int);

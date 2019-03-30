@@ -1,5 +1,5 @@
 //
-// Created by tommy on 3/7/2019.
+// Created by Tommy O'Brien on 3/7/2019.
 //
 
 #include "display.h"
@@ -8,11 +8,11 @@
 #include "catalogs.h"
 
 
-Movie* StartUp() //Displays
+Movie* StartUp()
 {
     printf("\n\nWelcome to the IMDb Movie Catalog!\n\n");
     printf("Initializing database. Please wait.\n");
-    Movie *tree = LoadDatabase();
+    Movie *tree = LoadDatabase();   //getting database of Movies
     printf("Intitialization finished.\n\n");
 
     return tree;
@@ -23,7 +23,7 @@ int MainMenu()
 {
     bool loop = false;
     int choice, digit;
-    char input[250];
+    char input[INPUT_LEN];
 
     printf("\nWould you like to:\n");
     printf("(1) Create a new catalog\n");
@@ -161,12 +161,12 @@ void UseCatalogMenu(Movie* database, char* name)
                 break;
             case 7:
             default:
-                editing = false;
+                editing = false;    //ends loop
                 break;
         }
     }
 
-    FILE* writeFile = NULL;
+    FILE* writeFile = NULL;     //the subsequent several lines of code save the current catalog
     writeFile = fopen(name, "w");
 
     if(catalogTree == NULL)
@@ -193,7 +193,7 @@ char *GetTitleToUse(Movie* catalogTree, char* catalogName, char* action)
 
     scanf(" %250[^\n]", input);
 
-    if(strlen(input) == INPUT_LEN)
+    if(strlen(input) == INPUT_LEN)  //will close program but will save the catalog first
     {
         FILE* writeFile = NULL;
         writeFile = fopen(catalogName, "w");
@@ -271,7 +271,7 @@ Movie *InitializeDateMenu(Movie *catalogTree, char *name)
             printf("\nFATAL ERROR: Entered amount of characters exceeds limit. Program closing. Catalog data may be lost.\n");
             exit(1);
         }
-        else if(strlen(input) == 10)
+        else if(strlen(input) == 10)    //the date form of MM/DD/YYYY is 10 characters long
         {
             loop = true;
         }

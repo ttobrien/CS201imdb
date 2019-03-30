@@ -1,5 +1,5 @@
 //
-// Created by tommy on 3/7/2019.
+// Created by Tommy O'Brien on 3/7/2019.
 //
 
 #ifndef CS201IMDB_CATALOGS_H

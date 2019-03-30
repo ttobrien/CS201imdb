@@ -1,5 +1,5 @@
 //
-// Created by tommy on 3/7/2019.
+// Created by Tommy O'Brien on 3/7/2019.
 //
 
 #include "newCatalog.h"
@@ -12,19 +12,20 @@
 
 void NewCatalog(Movie *database)
 {
-    char name[FILENAME_LEN];
-    char input[INPUT_LEN];
-    bool exists = true;
-    int inLen;
-    char extention[10];
-    bool match = true;
-    int count = 0;
-    int spaces = 0;
+    char name[FILENAME_LEN];//stores potential file names
+    char input[INPUT_LEN];  //stores user input
+    bool exists = true;     //keeps loop going until new, valid file name is entered
+    int inLen;              //length of inputted string
+    char extension[10];     //used for checking the .txt extension in input
+    bool match = true;      //turned false if input doesnt end in .txt
+    int count = 0;          //counts '.' in input
+    int spaces = 0;         //counts spaces in input
 
     while(exists)
     {
-        spaces = 0;
+        spaces = 0; //resets variables
         count = 0;
+        match = true;
         
         printf("\nWhat would you like to name this catalog? ");
         scanf(" %250[^\n]", input);
@@ -37,7 +38,7 @@ void NewCatalog(Movie *database)
         {
 
             inLen = strlen(input);
-            strcpy(extention, ".txt");
+            strcpy(extension, ".txt");
 
             if(inLen < 5)
             {
@@ -53,16 +54,16 @@ void NewCatalog(Movie *database)
                 return;
             }
 
-            if(! isalpha(input[0]))
+            if(! isalpha(input[0]))     //stricter than normal naming conventions to make naming simpler
             {
                 printf("\nERROR: file name should start with an english letter\n");
                 printf("Returning to main menu. Please try again.\n");
                 return;
             }
 
-            for(int i = 0; i < 4; i++)
+            for(int i = 0; i < 4; i++)  //checks that .txt are the last four characters of the input string
             {
-                if(extention[i] != input[inLen-4+i])
+                if(extension[i] != input[inLen-4+i])
                 {
                     match = false;
                 }
@@ -74,7 +75,7 @@ void NewCatalog(Movie *database)
                 return;
             }
 
-            for(int j = 0; j < inLen; j++)
+            for(int j = 0; j < inLen; j++)  //no spaces and only 1 '.' (for .txt) allowed to make naming simpler and avoid any weird potential behavior with files
             {
                 if(input[j] == '.')
                 {
@@ -103,16 +104,16 @@ void NewCatalog(Movie *database)
 
         }
 
-        FILE* newFile = NULL;
+        FILE* newFile = NULL;       //checks if file name is already a catalog in the folder
         newFile = fopen(name, "r");
         if(newFile != NULL)
         {
-            printf("ERROR: %s is the name of an existing calalog. Please choose a different name.\n", name);
+            printf("ERROR: %s is the name of an existing catalog. Please choose a different name.\n", name);
             fclose(newFile);
         }
         else
         {
-            exists = false;
+            exists = false; //if it is a new name then the loop is broken and the name for the catalog is used
         }
 
     }
@@ -126,9 +127,9 @@ void NewCatalog(Movie *database)
     char trash;
     scanf("%c", &trash);
 
-    while(firstMovie == NULL)
+    while(firstMovie == NULL)   //forces user to add movie to catalog
         firstMovie = InsertToCatalog(database, firstMovie);
-    fprintf(newfile, "1\n");
+    fprintf(newfile, "1\n");    //saving the new catalog with the just added movie
     PrintNodeToFile(firstMovie, newfile);
 
     fclose(newfile);

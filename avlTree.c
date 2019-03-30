@@ -1,5 +1,5 @@
 //
-// Created by tommy on 3/9/2019.
+// Created by Tommy O'Brien on 3/9/2019.
 //
 
 #include "avlTree.h"
@@ -8,7 +8,7 @@
 Movie* LoadDatabase()
 {
     FILE *titleBasics = NULL;
-    titleBasics = fopen("title.basics.tsv", "r");
+    titleBasics = fopen("title.basics.tsv", "r"); //file with all of the movie information
 
     if(titleBasics == NULL)
     {
@@ -20,7 +20,7 @@ Movie* LoadDatabase()
     char isAdult[3], startYear[NUM_SPACE], endYear[NUM_SPACE], runtimeMinutes[NUM_SPACE];
     char headers[20], trash;
 
-    for(int i = 1; i <= 8; i++)
+    for(int i = 1; i <= 8; i++)     //reads in top line of categories
     {
         fscanf(titleBasics, "%s\t", headers);
     }
@@ -28,7 +28,7 @@ Movie* LoadDatabase()
 
     Movie *tree = NULL;
 
-    while(!feof(titleBasics))
+    while(!feof(titleBasics))   //this loop adds everything designated as a movie into the AVL tree
     {
         fscanf(titleBasics, "%c", &trash);
         fscanf(titleBasics, " %s %[^\t] %[^\t] %[^\t] %s %s %s %s %[^\n]", tconst, titleType, primaryTitle, originalTitle, isAdult, startYear, endYear, runtimeMinutes, genres);
@@ -43,10 +43,10 @@ Movie* LoadDatabase()
     return tree;
 }
 
-Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearStart, char *minutes)
+Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearStart, char *minutes) //see citation in header file
 {
 
-    if(avl == NULL)
+    if(avl == NULL) //inserting Movie as a leaf in the correct ordering position
     {
         avl = (Movie *)malloc(sizeof(Movie));
         strcpy(avl->key, nameKey);
@@ -62,12 +62,12 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
 
     else
     {
-        if(strcmp(nameKey, avl->key) == 0)
+        if(strcmp(nameKey, avl->key) == 0)  //duplicate titles/keys are not allowed
             return avl;
         else if(strcmp(nameKey, avl->key) > 0)
         {
             avl->right = Insert(avl->right, nameKey, nameReg, types, yearStart, minutes);
-            if(BF(avl) == -2)
+            if(BF(avl) == -2)   //ensuring AVL property as recursion unfolds back up the tree
             {
                 if(strcmp(nameKey, avl->right->key) > 0)
                     avl = RR(avl);
@@ -78,7 +78,7 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
         else
         {
             avl->left = Insert(avl->left, nameKey, nameReg, types, yearStart, minutes);
-            if(BF(avl) == 2)
+            if(BF(avl) == 2)    //ensuring AVL property as recursion unfolds back up the tree
             {
                 if(strcmp(nameKey, avl->left->key) < 0)
                     avl = LL(avl);
@@ -91,9 +91,9 @@ Movie* Insert(Movie *avl, char *nameKey, char *nameReg, char *types, char *yearS
     return avl;
 }
 
-Movie* Remove(Movie *avl, char *name)
+Movie* Remove(Movie *avl, char *name)   //see citation in header file
 {
-    Movie *temp;
+    Movie *temp;    //needed when removing a match
 
     if(avl == NULL)
     {
@@ -105,7 +105,7 @@ Movie* Remove(Movie *avl, char *name)
         if(strcmp(name, avl->key) > 0)
         {
             avl->right = Remove(avl->right, name);
-            if(BF(avl) == 2)
+            if(BF(avl) == 2)    //ensuring AVL property as recursion unfolds back up the tree
             {
                 if(BF(avl->left) >= 0)
                 {
@@ -120,7 +120,7 @@ Movie* Remove(Movie *avl, char *name)
         else if(strcmp(name, avl->key) < 0)
         {
             avl->left = Remove(avl->left, name);
-            if(BF(avl) == -2)
+            if(BF(avl) == -2)   //ensuring AVL property as recursion unfolds back up the tree
             {
                 if(BF(avl->right) <= 0)
                 {
@@ -136,12 +136,12 @@ Movie* Remove(Movie *avl, char *name)
         {
             if(avl->right != NULL)
             {
-                temp = avl->right;
+                temp = avl->right;  //finding successor
                 while(temp->left != NULL)
                 {
                     temp = temp->left;
                 }
-                strcpy(avl->key, temp->key);
+                strcpy(avl->key, temp->key);    //essentially switching nodes
                 strcpy(avl->title, temp->title);
                 strcpy(avl->year, temp->year);
                 strcpy(avl->time, temp->time);
@@ -150,7 +150,7 @@ Movie* Remove(Movie *avl, char *name)
                 strcpy(avl->date, temp->date);
 
                 avl->right = Remove(avl->right, temp->key);
-                if(BF(avl) == 2)
+                if(BF(avl) == 2)    //ensuring AVL property
                 {
                     if(BF(avl->left) >= 0)
                     {
@@ -164,7 +164,7 @@ Movie* Remove(Movie *avl, char *name)
             }
             else
             {
-                temp = avl->left;
+                temp = avl->left;   //Movie to remove is replaced by its left child
                 return temp;
             }
         }
@@ -177,7 +177,7 @@ Movie* Remove(Movie *avl, char *name)
 Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
 {
 
-    if(avl == NULL)
+    if(avl == NULL)  //reached NULL leaf location along path where nameKey's movie should have existed somewhere in, so the title is not in the tree
     {
         printf("\nERROR: Movie not found. Media type not added.\n");
         return NULL;
@@ -185,7 +185,7 @@ Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
 
     else
     {
-        if(strcmp(nameKey, avl->key) == 0)
+        if(strcmp(nameKey, avl->key) == 0)      //movie found and date is updated
         {
             strcpy(avl->media, mediaType);
             return avl;
@@ -205,7 +205,7 @@ Movie* UpdateMediaType(Movie *avl, char *nameKey, char *mediaType)
 Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
 {
 
-    if(avl == NULL)
+    if(avl == NULL)  //reached NULL leaf location along path where nameKey's movie should have existed somewhere in, so the title is not in the tree
     {
         printf("\nERROR: Movie not found. Date of acquisition not added.\n");
         return NULL;
@@ -213,7 +213,7 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
 
     else
     {
-        if(strcmp(nameKey, avl->key) == 0)
+        if(strcmp(nameKey, avl->key) == 0)      //movie found and date is updated
         {
             strcpy(avl->date, dateAcquired);
             return avl;
@@ -230,7 +230,7 @@ Movie* UpdateDate(Movie *avl, char *nameKey, char *dateAcquired)
     return avl;
 }
 
-int height(Movie *avl)
+int height(Movie *avl)  //see citation in header file
 {
     int lh, rh;
     if(avl == NULL)
@@ -246,12 +246,12 @@ int height(Movie *avl)
     else
         rh = 1 + avl->right->height;
 
-    if(lh > rh)
+    if(lh > rh)     //return length of longest path to NULL leaf
         return lh;
     return rh;
 }
 
-int BF(Movie *avl)
+int BF(Movie *avl)  //see citation in header file
 {
     int lh, rh;
     if(avl == NULL)
@@ -267,10 +267,10 @@ int BF(Movie *avl)
     else
         rh = 1 + avl->right->height;
 
-    return (lh - rh);
+    return (lh - rh); //difference in height between left and right children
 }
 
-Movie *rotateRight(Movie *x)
+Movie *rotateRight(Movie *x)    //see citation in header file
 {
     Movie *y;
     y = x->left;
@@ -281,7 +281,7 @@ Movie *rotateRight(Movie *x)
     return y;
 }
 
-Movie *rotateLeft(Movie *x)
+Movie *rotateLeft(Movie *x)     //see citation in header file
 {
     Movie *y;
     y = x->right;
@@ -292,26 +292,26 @@ Movie *rotateLeft(Movie *x)
     return y;
 }
 
-Movie *RR(Movie *x)
+Movie *RR(Movie *x)         //see citation in header file
 {
     x = rotateLeft(x);
     return x;
 }
 
-Movie *LL(Movie *x)
+Movie *LL(Movie *x)         //see citation in header file
 {
     x = rotateRight(x);
     return x;
 }
 
-Movie *LR(Movie *x)
+Movie *LR(Movie *x)         //see citation in header file
 {
     x->left = rotateLeft(x->left);
     x = rotateRight(x);
     return x;
 }
 
-Movie *RL(Movie *x)
+Movie *RL(Movie *x)         //see citation in header file
 {
     x->right = rotateRight(x->right);
     x = rotateLeft(x);
@@ -322,10 +322,10 @@ void SearchForMovie(Movie* database, char* titleKey, int keyLen)
 {
     if(database == NULL)
         return;
-    else if(strncmp(database->key, titleKey, keyLen) == 0)
+    else if(strncmp(database->key, titleKey, keyLen) == 0) //when a movie matches, it is possible that subsequent movies to the left or right in its subtree could match
     {
-        printf("%s\n", database->title);
         SearchForMovie(database->left, titleKey, keyLen);
+        printf("%s\n", database->title);
         SearchForMovie(database->right, titleKey, keyLen);
     }
     else if(strncmp(database->key, titleKey, keyLen) < 0)
