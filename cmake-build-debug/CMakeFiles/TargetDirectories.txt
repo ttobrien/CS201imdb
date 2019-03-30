@@ -1,3 +1,0 @@
-/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/cs201imdb.dir
-/cygdrive/c/Users/tommy/CLionProjects/cs201imdb/CS201imdb/cmake-build-debug/CMakeFiles/edit_cache.dir
