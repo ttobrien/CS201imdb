@@ -129,7 +129,7 @@ and then choose option 7 in the movie menu to return to the main menu and create
 ## Reasoning for Choices:
 1. After a few days of research, I concluded that an AVL Tree was the best data structure for me to use on this project. There were several motivating factors driving that choice. Firstly, an AVL Tree performs insertions, deletions, and searches in O(lg n) time. Also I have studied and coded binary search trees and red-black trees, so I am quite comfortable with the concept of BSTs. However, I had no previous experience with AVL trees in particular. this project served as a good opprtunity to learn and implement how they function. It is also a better form of a self-balancing BST than a red-black tree because it is stricter in its balancing. An AVL tree ensures that from any given node its left and right subtrees will only have a height differntial of 1. Both the database and individual catalogs utilize the same AVL tree functions.
 
-2. Originally, I had allowed the user to view names of existing catalogs, but I decided it would be best to remove that functionality. The biggest reason for that choice is that it affected program storage and and running time negatively. view through task manager and command line, create extra data structure, now is O(1) time.
+2. Originally, I had allowed the user to view names of existing catalogs, but I decided it would be best to remove that functionality. The biggest reason for that choice is that it affected program storage and running time negatively. Text file names can viewed in the project folder. This method avoids creating an uneseccasry data structure. The operation now performs in O(1) time.
 
 
 
