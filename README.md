@@ -4,6 +4,9 @@
 This program allows the user to create, read, update, and delete movies from the IMDb database in a personal catalog that will be saved beyond program termination.
 
 ## Overview of Program Operation:
+
+Walkthrough video can be found at https://www.youtube.com/watch?v=7x1oVnYvGqM
+
 **Overview describes successful scenarios**
 After the user has started program execution the following output will appear:
 
