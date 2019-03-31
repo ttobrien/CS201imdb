@@ -93,6 +93,7 @@ Unzip the file to an empty folder.
 Go to https://datasets.imdbws.com/
 Download the file title.basics.tsv.gz
 Unzip the file and add title.basics.tsv to the folder that the code is in
+It is possible that the tsv file could've been downloaded under the name data.tsv or another name. If so, change the name to title.basics.tsv
 This program is intended to work on Ubuntu 18.04 LTS (Bionic Beaver)
 There is a makefile included in the project folder, so while in the project folder in the terminal type
 

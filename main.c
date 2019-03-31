@@ -15,7 +15,7 @@ int main(void)
 
     if(tree == NULL) //Program closes if datafile is not found since there is not much a user could do without the database
     {
-        printf("\nDatabase not loaded. Exiting program.\n\n");
+        printf("Database not loaded. Exiting program.\n\n");
         return 0;
     }
 

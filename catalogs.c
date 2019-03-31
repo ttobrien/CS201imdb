@@ -19,14 +19,14 @@ char* EditCatalog()
         scanf(" %250[^\n]", input);
         if(strlen(input) == INPUT_LEN)
         {
-            printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+            printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
             exit(1);
         }
         strncpy(name, input, FILENAME_LEN); //prevents overflowing name
         FILE* catalogName = NULL;
         catalogName = fopen(name, "r");
         if (catalogName == NULL)
-            printf("%s does not exist. Try again.\n", name);
+            printf("\nERROR: %s does not exist. Try again.\n", name);
         else
         {
           fclose(catalogName);
@@ -44,7 +44,7 @@ char* ConvertToKey(char* title)
     int len = strlen(title);
     if((len + 2) >= TITLE_SPACE)    //restricts input for title to 248 to avoid potentially overflowing the key when returned
     {
-        printf("\nERROR: while converting the entered title into its key the maximum length would have been exceeded.\nProgram closing. Current data for the current catalog might have been lost.\n");
+        printf("\nFATAL ERROR: while converting the entered title into its key the maximum length would have been exceeded.\nProgram closing. Current data for the current catalog might have been lost.\n");
         exit(1);
     }
     char* temp;
@@ -116,7 +116,7 @@ Movie* LoadCatalog(char* name)
     catalogName = fopen(name, "r");
     if(catalogName == NULL)
     {
-        printf("Catalog %s does not exists.\n", name);
+        printf("\nERROR: Catalog %s does not exists.\n", name);
         return NULL;
     }
 
@@ -150,7 +150,7 @@ Movie* SelectMovie(Movie *database) //strncpy and strncmp
     scanf(" %250[^\n]", input1);
     if(strlen(input1) == INPUT_LEN)
     {
-        printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+        printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
         exit(1);
     }
     strcpy(title1, input1);  //TITLE_SPACE = INPUT_LEN
@@ -162,7 +162,7 @@ Movie* SelectMovie(Movie *database) //strncpy and strncmp
     scanf(" %250[^\n]", input2);
     if(strlen(input2) == INPUT_LEN)
     {
-        printf("\nERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
+        printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. Current data for the current catalog might have been lost.\n");
         exit(1);
     }
     strcpy(title2, input2);   //TITLE_SPACE = INPUT_LEN

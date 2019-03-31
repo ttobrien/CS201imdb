@@ -31,7 +31,7 @@ void NewCatalog(Movie *database)
         scanf(" %250[^\n]", input);
         if(strlen(input) == INPUT_LEN)
         {
-            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
             exit(1);
         }
         else
@@ -125,7 +125,7 @@ void NewCatalog(Movie *database)
 
     Movie* firstMovie = NULL;
     char trash;
-    scanf("%c", &trash);
+    scanf("%c", &trash);    //helps program function correctly
 
     while(firstMovie == NULL)   //forces user to add movie to catalog
         firstMovie = InsertToCatalog(database, firstMovie);
@@ -147,7 +147,7 @@ void NewCatalog(Movie *database)
         scanf(" %250[^\n]", input);
         if(strlen(input) == INPUT_LEN)
         {
-            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
             exit(1);
         }
         digit = CheckInputIsDigit(input);

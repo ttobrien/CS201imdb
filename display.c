@@ -13,7 +13,7 @@ Movie* StartUp()
     printf("\n\nWelcome to the IMDb Movie Catalog!\n\n");
     printf("Initializing database. Please wait.\n");
     Movie *tree = LoadDatabase();   //getting database of Movies
-    printf("Intitialization finished.\n\n");
+    printf("Initialization finished.\n\n");
 
     return tree;
 }
@@ -36,7 +36,7 @@ int MainMenu()
         scanf(" %250[^\n]", input);
         if(strlen(input) == INPUT_LEN)
         {
-            printf("\nERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
+            printf("\nFATAL ERROR: Maximum input length exceeded. Program closing. No catalog data was lost.\n");
             exit(1);
         }
         digit = CheckInputIsDigit(input);
@@ -54,7 +54,7 @@ bool CheckValidInput(int lower, int upper, int num)
     bool valid;
     if( (num < lower) || (num > upper) )
     {
-        printf("ERROR: Enter a number %d through %d.\n", lower, upper);
+        printf("\nERROR: Enter a number %d through %d.\n", lower, upper);
         valid = false;
     }
     else
@@ -69,14 +69,14 @@ int CheckInputIsDigit(char *input)
     int len = strlen(input);
     if(len != 1)
     {
-        printf("ERROR: Single integer digit expected.\n");
+        printf("\nERROR: Single integer digit expected.\n");
         return -1;
     }
     else if (isdigit(input[0]))
         return atoi(input);
     else
     {
-        printf("ERROR: Single integer digit expected.\n");
+        printf("\nERROR: Single integer digit expected.\n");
         return -1;
     }
 }
@@ -120,7 +120,7 @@ void UseCatalogMenu(Movie* database, char* name)
                 }
 
                 fclose(writeFile);
-                printf("\nEntered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
+                printf("\nFATAL ERROR: Entered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
                 exit(1);
             }
 
@@ -209,7 +209,7 @@ char *GetTitleToUse(Movie* catalogTree, char* catalogName, char* action)
         }
 
         fclose(writeFile);
-        printf("\nEntered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
+        printf("\nFATAL ERROR: Entered amount of characters exceeds limit. Program closing. No catalog data was lost.\n");
         exit(1);
     }
 
