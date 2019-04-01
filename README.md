@@ -27,7 +27,7 @@ First the user has to specify the name of the catalog. This name must be unique 
 
 
 Option 2 allows the user to perform several different functions on an existing catalog.
-First the user has to specify the name of an existing catalog that he or she would like to start working with again. Once the user has entered a valid catalog file name, the following movie menu will appear:
+First the user has to specify the name of an existing catalog (including the .txt extension) that he or she would like to start working with again. Once the user has entered a valid catalog file name, the following movie menu will appear:
 
     Select what you would like to do with catalog CATALOGNAME:
     (1) Add a movie
