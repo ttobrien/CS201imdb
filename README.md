@@ -1,4 +1,4 @@
-# CS201imdb
+# Personal Movie Database
 
 ## Brief Description: 
 This program allows the user to create, read, update, and delete movies from the IMDb database in a personal catalog that will be saved beyond program termination.
